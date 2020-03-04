@@ -17,19 +17,12 @@ menu:
 
 
 
-```r
-library(tidyverse)
-library(rcfss)
-library(here)
-
-set.seed(1234)
-```
 
 ## Reproducibility in scientific research
 
 ![](/img/data-science/base.png)
 
-**Reproducibility** is "the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them."^[[Coursera: Reproducible Research](https://www.coursera.org/learn/reproducible-research)] Scholars who implement reproducibility in their projects can quickly and easily reproduce the original results and trace back to determine how they were derived. This easily enables verification and replication, and allows the researcher to precisely replicate his or her analysis. This is extremely important when writing a paper, submiting it to a journal, then coming back months later for a revise and resubmit because you won't remember how all the code/analysis works together when completing your revisions.
+**Reproducibility** is "the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them."^[[Coursera: Reproducible Research](https://www.coursera.org/learn/reproducible-research)] Scholars who implement reproducibility in their projects can quickly and easily reproduce the original results and trace back to determine how they were derived. This easily enables verification and replication, and allows the researcher to precisely replicate his or her analysis. This is extremely important when writing a paper, submitting it to a journal, then coming back months later for a revise and resubmit because you won't remember how all the code/analysis works together when completing your revisions.
 
 Reproducibility is also key for communicating findings with other researchers and decision makers; it allows them to verify your results, assess your assumptions, and understand how your answers were formed rather than solely relying on your claims. In the data science framework employed in [R for Data Science](http://r4ds.had.co.nz), reproducibility is infused throughout the entire workflow.
 
@@ -73,12 +66,12 @@ youth %>%
 R Markdown documents contain 3 major components:
 
 1. A **YAML header** surrounded by `---`s
-1. **Chunks** of R code surounded by ` ``` `
+1. **Chunks** of R code surrounded by ``` (triple-backticks)
 1. Text mixed with simple text formatting using the [Markdown syntax](/homework/edit-readme/)
 
-Code chunks are interspersed with text throughout the document. To complete the document, you "Knit" or "render" the document. Most of you proably knit the document by clicking the "Knit" button in the script editor panel. You can also do this programmatically from the console by running the command `rmarkdown::render("example.Rmd")`.
+Code chunks are interspersed with text throughout the document. To complete the document, you "Knit" or "render" the document. Most of you probably knit the document by clicking the "Knit" button in the script editor panel. You can also do this programmatically from the console by running the command `rmarkdown::render("example.Rmd")`.
 
-When you **knit** the document you send your `.Rmd` file to `knitr`, a package for R that executes all the code chunks and creates a second **markdown** document (`.md`). That markdown document is then passed onto [**pandoc**](http://pandoc.org/), a document rendering software program independent from R. Pandoc allows users to convert back and forth between many different document formats such as HTML, `\(\LaTeX\)`, Microsoft Word, etc. By splitting the workflow up, you can convert your R Markdown document into a wide range of output formats.
+When you **knit** the document you send your `.Rmd` file to [`knitr`](https://yihui.name/knitr/), a package for R that executes all the code chunks and creates a second **markdown** document (`.md`). That markdown document is then passed onto [**pandoc**](http://pandoc.org/), a document rendering software program independent from R. Pandoc allows users to convert back and forth between many different document formats such as HTML, $\LaTeX$, Microsoft Word, etc. By splitting the workflow up, you can convert your R Markdown document into a wide range of output formats.
 
 ![](https://r4ds.had.co.nz/images/RMarkdownFlow.png)
 
@@ -105,13 +98,20 @@ Code chunks can be customized to adjust the output of the chunk. Some important 
 * `results = 'hide'` - hides printed output.
 * `error = TRUE` - causes the document to continue knitting and rendering even if the code generates a fatal error. I use this a lot when I want to [intentionally demonstrate an error in class](/notes/condition-handling/#fatal-errors). If you're debugging your code, you might want to use this option. However for the final version of your document, you probably do not want to allow errors to pass through unnoticed.
 
+For example, if I wanted a code chunk to not print the code itself or any warnings/messages generated by the chunk (i.e. only print tables and figures), I would write this as:
+
+    ```{r echo = FALSE, message = FALSE, warning = FALSE}
+    # code goes here
+    ```
+
+
 ## Caching
 
 Remember the R Markdown workflow?
 
 ![](https://r4ds.had.co.nz/images/RMarkdownFlow.png)
 
-By default, every time you knit a document R starts completely fresh. None of the previous results are saved. If you have code chunks that run computationally intensive tasks, you might want to store these results to be more efficient and save time. If you use `cache = TRUE`, R will do exactly this. The output of the chunk will be saved to a specially named file on disk. If your `.gitignore` file is setup correctly, this cached file will not be tracked by Git. This is in fact preferable since the cached file could be hundreds of megabytes in size. Now, every time you knit the document the cached results will be used instead of running the code fresh.
+By default, every time you knit a document R starts completely fresh. None of the previous results are saved. If you have code chunks that run computationally intensive tasks, you might want to store these results to be more efficient and save time. If you use `cache = TRUE`, R will do exactly this. The output of the chunk will be saved to a specially named file on disk. If your [`.gitignore` file is setup correctly](/notes/common-git-problems/#how-to-use-gitignore), this cached file will not be tracked by Git. This is in fact preferable since the cached file could be hundreds of megabytes in size. Now, every time you knit the document the cached results will be used instead of running the code fresh.
 
 ### Dependencies
 
@@ -173,12 +173,15 @@ Add a section that explores how gun deaths vary by race.
 
 **Y**et **A**nother **M**arkup **L**anguage, or **YAML** (rhymes with *camel*) is a standardized format for storing hierarchical data in a human-readable syntax. The YAML header controls how `rmarkdown` renders your `.Rmd` file. A YAML header is a section of `key: value` pairs surrounded by `---` marks.
 
+
+
+
 ```
 ---
-title: "Gun deaths"
-author: "Benjamin Soltoff"
-date: 2017-02-01
-output: html_document
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
+output: github_document
 ---
 ```
 
@@ -190,11 +193,12 @@ The most important option is `output`, as this determines the final document for
 
 For your homework assignments, we have used `github_document` to generate a [Markdown document](http://rmarkdown.rstudio.com/markdown_document_format.html). However there are other document formats that are more commonly used.
 
+
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output: html_document
 ---
 ```
@@ -205,15 +209,17 @@ output: html_document
 
 Each output format has various options to customize the appearance of the final document. One option for HTML documents is to add a table of contents through the `toc` option. To add any option for an output format, just add it in a hierarchical format like this:
 
+
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
   html_document:
     toc: true
     toc_depth: 2
+---
 ```
 
 You can explicitly set the number of levels included in the table of contents with `toc_depth` (the default is 3).
@@ -225,13 +231,12 @@ There are several options that control the visual appearance of HTML documents.
 * `theme` specifies the Bootstrap theme to use for the page (themes are drawn from the [Bootswatch](http://bootswatch.com/) theme library). Valid themes include  `"default"`, `"cerulean"`, `"journal"`, `"flatly"`, `"readable"`, `"spacelab"`, `"united"`, `"cosmo"`, `"lumen"`, `"paper"`, `"sandstone"`, `"simplex"`, and `"yeti"`.
 * `highlight` specifies the syntax highlighting style for code chunks. Supported styles include `"default"`, `"tango"`, `"pygments"`, `"kate"`, `"monochrome"`, `"espresso"`, `"zenburn"`, `"haddock"`, and `"textmate"`.
 
-> [This course site](http://cfss.uchicago.edu) uses the [R Markdown Websites](http://rmarkdown.rstudio.com/rmarkdown_websites.html) format to render multiple `.Rmd` documents in a single website. It uses the `readable` theme and `pygments` highlighting.
 
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
   html_document:
     theme: readable
@@ -243,11 +248,12 @@ output:
 
 Sometimes when knitting an R Markdown document you want to include your R source code (`echo = TRUE`) but you may want to include it but not make it visible by default. The `code_folding: hide` options allows you to include your R code but hide it. Users can then decide whether or not they want to see specific chunks or all chunks in the document. This strikes a good balance between readability and reproducibility.
 
+
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
   html_document:
     code_folding: hide
@@ -258,11 +264,12 @@ output:
 
 When `knitr` processes your `.Rmd` document, it creates a Markdown (`.md`) file that is subsequently deleted. If you want to keep a copy of the Markdown file use the `keep_md` option:
 
+
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
   html_document:
     keep_md: true
@@ -275,72 +282,79 @@ Use the `gun-deaths.Rmd` file you saved on your computer and test some of the do
 
 ## PDF document
 
-[`pdf_document`](http://rmarkdown.rstudio.com/pdf_document_format.html) converts the `.Rmd` file to a `\(\LaTeX\)` file which is used to generate a PDF.
+[`pdf_document`](http://rmarkdown.rstudio.com/pdf_document_format.html) converts the `.Rmd` file to a $\LaTeX$ file which is used to generate a PDF.
+
 
 ```
 ---
-title: "Gun deaths"
-date: 2017-02-01
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output: pdf_document
 ---
 ```
 
-You do need to have a full installation of TeX on your computer to generate PDF output. However the nice thing is that because it uses the `\(\LaTeX\)` rendering engine, you can use raw `\(\LaTeX\)` code in your `.Rmd` file (if you know how to use it).
+You do need to have a full installation of TeX on your computer to generate PDF output. However the nice thing is that because it uses the $\LaTeX$ rendering engine, you can use raw $\LaTeX$ code in your `.Rmd` file (if you know how to use it).
 
 ### Table of contents
 
 Many options for HTML documents also work for PDFs. For instance, you create a table of contents the same way:
 
+
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
   pdf_document:
     toc: true
-    toc_depth: 2
+    toc_depth: true
+---
 ```
 
 ### Syntax highlighting
 
 You cannot customize the `theme` of a `pdf_document` (at least not in the same way as HTML files), but you can still customize the syntax highlighting.
 
+
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
   pdf_document:
     highlight: pygments
 ---
 ```
 
-### `\(\LaTeX\)` options
+### $\LaTeX$ options
 
-You can also directly control options in the `\(\LaTeX\)` template itself via the YAML options. Note that these options are passed as top-level YAML metadata, not underneath the `output` section:
+You can also directly control options in the $\LaTeX$ template itself via the YAML options. Note that these options are passed as top-level YAML metadata, not underneath the `output` section:
+
 
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output: pdf_document
-fontsize: 11pt
 geometry: margin=1in
+fontsize: 11pt
 ---
 ```
 
 ### Keep intermediate TeX
 
-R Markdown documents are converted first to a `.tex` file, and then use the `\(\LaTeX\)` engine to convert to PDF. To keep the `.tex` file, use the `keep_tex` option:
+R Markdown documents are converted first to a `.tex` file, and then use the $\LaTeX$ engine to convert to PDF. To keep the `.tex` file, use the `keep_tex` option:
+
 
 ```
 ---
-title: "Untitled"
-author: "Benjamin Soltoff"
-date: "February 1, 2017"
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
   pdf_document:
     keep_tex: true
@@ -358,7 +372,7 @@ You can use R Markdown not only to generate full documents, but also slide prese
 * [ioslides](http://rmarkdown.rstudio.com/ioslides_presentation_format.html) - HTML presentation with ioslides
 * [reveal.js](http://rmarkdown.rstudio.com/revealjs_presentation_format.html) - HTML presentation with reveal.js
 * [Slidy](http://rmarkdown.rstudio.com/slidy_presentation_format.html) - HTML presentation with W3C Slidy
-* [Beamer](http://rmarkdown.rstudio.com/beamer_presentation_format.html) - PDF presentation with `\(\LaTeX\)` Beamer
+* [Beamer](http://rmarkdown.rstudio.com/beamer_presentation_format.html) - PDF presentation with $\LaTeX$ Beamer
 
 Each as their own strengths and weaknesses. ioslides and Slidy are probably the easiest to use initially, but are more difficult to customize. reveal.js is more complex, but allows for more customization (this is the format I use for my slides in this class). Beamer is the only presentation format that creates a PDF document and is probably a smoother transition for those already used to Beamer.
 
@@ -370,25 +384,21 @@ Choose one of the presentation formats and convert `gun-deaths.Rmd` into a slide
 
 You can even render your document into multiple output formats by supplying a list of formats:
 
+
 ```
+---
+author: Benjamin Soltoff
+date: '2019-10-30'
+title: Gun deaths
 output:
-  html_document:
-    toc: true
-    toc_float: true
   pdf_document: default
-```
-
-If you don't want to change any of the default options for a format, use the `default` option. You cannot specify multiple formats like this:
-
-```
-output:
   html_document:
     toc: true
     toc_float: true
-  pdf_document
+---
 ```
 
-You **must** assign some value to the second output format, hence the use of `default`.
+If you don't want to change any of the default options for a format, use the `default` option. You **must** assign some value to the second output format, hence the use of `default`.
 
 ### Rendering multiple outputs programmatically
 
@@ -396,7 +406,7 @@ When rendering multiple output formats, you cannot just click the "Knit" button.
 
 ### Exercise: render in multiple formats
 
-Render `gun-deaths.Rmd` as both an HTML document and a PDF document. If you do not have `\(\LaTeX\)` installed on your computer, render `gun-deaths.Rmd` as both an HTML document and a [Word document](http://rmarkdown.rstudio.com/word_document_format.html). And at some point [install `\(\LaTeX\)` on your computer](https://www.latex-project.org/get/) so you can create PDF documents.
+Render `gun-deaths.Rmd` as both an HTML document and a PDF document. If you do not have $\LaTeX$ installed on your computer, render `gun-deaths.Rmd` as both an HTML document and a [Word document](http://rmarkdown.rstudio.com/word_document_format.html). And at some point [install $\LaTeX$ on your computer](https://www.latex-project.org/get/) so you can create PDF documents.
 
 ## R scripts
 
@@ -436,7 +446,7 @@ You edit scripts in the editor panel in R Studio.
 
 ## When to use a script?
 
-[Scripts are much easier to troubleshoot than R Markdown documents](http://r4ds.had.co.nz/r-markdown.html#troubleshooting) because your code is not split across chunks and you can run everything interactively. When you first begin a project, you may find it useful to use scripts initially to build and debug code, then convert it to an R Markdown document once you begin the substantive analysis and writeup. Or you may use a mix of scripts and R Markdown documents depending on the size and complexity of your project. For instance, you could use a **reproducible pipeline** which uses a sequence of R scripts to download, import, and transform your data, then use an R Markdown document to produce a final report.
+[Scripts are much easier to troubleshoot than R Markdown documents](http://r4ds.had.co.nz/r-markdown.html#troubleshooting) because your code is not split across chunks and you can run everything interactively. When you first begin a project, you may find it useful to use scripts initially to build and debug code, then convert it to an R Markdown document once you begin the substantive analysis and write-up. Or you may use a mix of scripts and R Markdown documents depending on the size and complexity of your project. For instance, you could use a **reproducible pipeline** which uses a sequence of R scripts to download, import, and transform your data, then use an R Markdown document to produce a final report.
 
 > Check out [this example](https://github.com/uc-cfss/pipeline-example) for how one could use a pipeline in this fashion.
 
@@ -479,96 +489,98 @@ This creates a temporary R script which contains the single command `rmarkdown::
 
 
 
-```r
-devtools::session_info()
 ```
-
-```
-## ─ Session info ──────────────────────────────────────────────────────────
+## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 3.6.0 (2019-04-26)
-##  os       macOS Mojave 10.14.6        
+##  version  R version 3.6.1 (2019-07-05)
+##  os       macOS Catalina 10.15.3      
 ##  system   x86_64, darwin15.6.0        
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       America/Chicago             
-##  date     2019-09-15                  
+##  date     2020-02-18                  
 ## 
-## ─ Packages ──────────────────────────────────────────────────────────────
+## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source        
 ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.0)
-##  backports     1.1.4   2019-04-10 [1] CRAN (R 3.6.0)
-##  blogdown      0.14    2019-07-13 [1] CRAN (R 3.6.0)
-##  bookdown      0.12    2019-07-11 [1] CRAN (R 3.6.0)
-##  broom         0.5.2   2019-04-07 [1] CRAN (R 3.6.0)
-##  callr         3.3.1   2019-07-18 [1] CRAN (R 3.6.0)
+##  backports     1.1.5   2019-10-02 [1] CRAN (R 3.6.0)
+##  blogdown      0.17.1  2020-02-13 [1] local         
+##  bookdown      0.17    2020-01-11 [1] CRAN (R 3.6.0)
+##  broom         0.5.4   2020-01-27 [1] CRAN (R 3.6.0)
+##  callr         3.4.2   2020-02-12 [1] CRAN (R 3.6.1)
 ##  cellranger    1.1.0   2016-07-27 [1] CRAN (R 3.6.0)
-##  cli           1.1.0   2019-03-19 [1] CRAN (R 3.6.0)
+##  cli           2.0.1   2020-01-08 [1] CRAN (R 3.6.0)
 ##  colorspace    1.4-1   2019-03-18 [1] CRAN (R 3.6.0)
 ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)
+##  DBI           1.1.0   2019-12-15 [1] CRAN (R 3.6.0)
+##  dbplyr        1.4.2   2019-06-17 [1] CRAN (R 3.6.0)
 ##  desc          1.2.0   2018-05-01 [1] CRAN (R 3.6.0)
-##  devtools      2.1.0   2019-07-06 [1] CRAN (R 3.6.0)
-##  digest        0.6.20  2019-07-04 [1] CRAN (R 3.6.0)
-##  dplyr       * 0.8.3   2019-07-04 [1] CRAN (R 3.6.0)
+##  devtools      2.2.1   2019-09-24 [1] CRAN (R 3.6.0)
+##  digest        0.6.23  2019-11-23 [1] CRAN (R 3.6.0)
+##  dplyr       * 0.8.4   2020-01-31 [1] CRAN (R 3.6.0)
+##  ellipsis      0.3.0   2019-09-20 [1] CRAN (R 3.6.0)
 ##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)
+##  fansi         0.4.1   2020-01-08 [1] CRAN (R 3.6.0)
 ##  forcats     * 0.4.0   2019-02-17 [1] CRAN (R 3.6.0)
 ##  fs            1.3.1   2019-05-06 [1] CRAN (R 3.6.0)
 ##  generics      0.0.2   2018-11-29 [1] CRAN (R 3.6.0)
 ##  ggplot2     * 3.2.1   2019-08-10 [1] CRAN (R 3.6.0)
 ##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)
 ##  gtable        0.3.0   2019-03-25 [1] CRAN (R 3.6.0)
-##  haven         2.1.1   2019-07-04 [1] CRAN (R 3.6.0)
+##  haven         2.2.0   2019-11-08 [1] CRAN (R 3.6.0)
 ##  here        * 0.1     2017-05-28 [1] CRAN (R 3.6.0)
-##  hms           0.5.0   2019-07-09 [1] CRAN (R 3.6.0)
-##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.6.0)
+##  hms           0.5.3   2020-01-08 [1] CRAN (R 3.6.0)
+##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 3.6.0)
 ##  httr          1.4.1   2019-08-05 [1] CRAN (R 3.6.0)
-##  jsonlite      1.6     2018-12-07 [1] CRAN (R 3.6.0)
-##  knitr         1.24    2019-08-08 [1] CRAN (R 3.6.0)
-##  lattice       0.20-38 2018-11-04 [1] CRAN (R 3.6.0)
+##  jsonlite      1.6.1   2020-02-02 [1] CRAN (R 3.6.0)
+##  knitr         1.28    2020-02-06 [1] CRAN (R 3.6.0)
+##  lattice       0.20-38 2018-11-04 [1] CRAN (R 3.6.1)
 ##  lazyeval      0.2.2   2019-03-15 [1] CRAN (R 3.6.0)
+##  lifecycle     0.1.0   2019-08-01 [1] CRAN (R 3.6.0)
 ##  lubridate     1.7.4   2018-04-11 [1] CRAN (R 3.6.0)
 ##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.0)
 ##  memoise       1.1.0   2017-04-21 [1] CRAN (R 3.6.0)
 ##  modelr        0.1.5   2019-08-08 [1] CRAN (R 3.6.0)
 ##  munsell       0.5.0   2018-06-12 [1] CRAN (R 3.6.0)
-##  nlme          3.1-141 2019-08-01 [1] CRAN (R 3.6.0)
-##  pillar        1.4.2   2019-06-29 [1] CRAN (R 3.6.0)
-##  pkgbuild      1.0.4   2019-08-05 [1] CRAN (R 3.6.0)
-##  pkgconfig     2.0.2   2018-08-16 [1] CRAN (R 3.6.0)
+##  nlme          3.1-144 2020-02-06 [1] CRAN (R 3.6.0)
+##  pillar        1.4.3   2019-12-20 [1] CRAN (R 3.6.0)
+##  pkgbuild      1.0.6   2019-10-09 [1] CRAN (R 3.6.0)
+##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 3.6.0)
 ##  pkgload       1.0.2   2018-10-29 [1] CRAN (R 3.6.0)
-##  prettyunits   1.0.2   2015-07-13 [1] CRAN (R 3.6.0)
+##  prettyunits   1.1.1   2020-01-24 [1] CRAN (R 3.6.0)
 ##  processx      3.4.1   2019-07-18 [1] CRAN (R 3.6.0)
 ##  ps            1.3.0   2018-12-21 [1] CRAN (R 3.6.0)
-##  purrr       * 0.3.2   2019-03-15 [1] CRAN (R 3.6.0)
-##  R6            2.4.0   2019-02-14 [1] CRAN (R 3.6.0)
-##  rcfss       * 0.1.8   2019-08-27 [1] local         
-##  Rcpp          1.0.2   2019-07-25 [1] CRAN (R 3.6.0)
+##  purrr       * 0.3.3   2019-10-18 [1] CRAN (R 3.6.0)
+##  R6            2.4.1   2019-11-12 [1] CRAN (R 3.6.0)
+##  rcfss       * 0.1.9   2019-11-13 [1] local         
+##  Rcpp          1.0.3   2019-11-08 [1] CRAN (R 3.6.0)
 ##  readr       * 1.3.1   2018-12-21 [1] CRAN (R 3.6.0)
 ##  readxl        1.3.1   2019-03-13 [1] CRAN (R 3.6.0)
 ##  remotes       2.1.0   2019-06-24 [1] CRAN (R 3.6.0)
-##  rlang         0.4.0   2019-06-25 [1] CRAN (R 3.6.0)
-##  rmarkdown     1.14    2019-07-12 [1] CRAN (R 3.6.0)
+##  reprex        0.3.0   2019-05-16 [1] CRAN (R 3.6.0)
+##  rlang         0.4.4   2020-01-28 [1] CRAN (R 3.6.0)
+##  rmarkdown     2.1     2020-01-20 [1] CRAN (R 3.6.0)
 ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.6.0)
-##  rstudioapi    0.10    2019-03-19 [1] CRAN (R 3.6.0)
-##  rvest         0.3.4   2019-05-15 [1] CRAN (R 3.6.0)
-##  scales        1.0.0   2018-08-09 [1] CRAN (R 3.6.0)
+##  rstudioapi    0.11    2020-02-07 [1] CRAN (R 3.6.0)
+##  rvest         0.3.5   2019-11-08 [1] CRAN (R 3.6.0)
+##  scales        1.1.0   2019-11-18 [1] CRAN (R 3.6.0)
 ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)
-##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
+##  stringi       1.4.5   2020-01-11 [1] CRAN (R 3.6.0)
 ##  stringr     * 1.4.0   2019-02-10 [1] CRAN (R 3.6.0)
-##  testthat      2.2.1   2019-07-25 [1] CRAN (R 3.6.0)
+##  testthat      2.3.1   2019-12-01 [1] CRAN (R 3.6.0)
 ##  tibble      * 2.1.3   2019-06-06 [1] CRAN (R 3.6.0)
-##  tidyr       * 0.8.3   2019-03-01 [1] CRAN (R 3.6.0)
-##  tidyselect    0.2.5   2018-10-11 [1] CRAN (R 3.6.0)
-##  tidyverse   * 1.2.1   2017-11-14 [1] CRAN (R 3.6.0)
+##  tidyr       * 1.0.2   2020-01-24 [1] CRAN (R 3.6.0)
+##  tidyselect    1.0.0   2020-01-27 [1] CRAN (R 3.6.0)
+##  tidyverse   * 1.3.0   2019-11-21 [1] CRAN (R 3.6.0)
 ##  usethis       1.5.1   2019-07-04 [1] CRAN (R 3.6.0)
-##  vctrs         0.2.0   2019-07-05 [1] CRAN (R 3.6.0)
+##  vctrs         0.2.2   2020-01-24 [1] CRAN (R 3.6.0)
 ##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)
-##  xfun          0.8     2019-06-25 [1] CRAN (R 3.6.0)
+##  xfun          0.12    2020-01-13 [1] CRAN (R 3.6.0)
 ##  xml2          1.2.2   2019-08-09 [1] CRAN (R 3.6.0)
-##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
-##  zeallot       0.1.0   2018-01-28 [1] CRAN (R 3.6.0)
+##  yaml          2.2.1   2020-02-01 [1] CRAN (R 3.6.0)
+##  ymlthis     * 0.1.2   2020-02-03 [1] CRAN (R 3.6.0)
 ## 
 ## [1] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
 ```

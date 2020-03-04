@@ -1,15 +1,15 @@
 ---
-title: "Statistical learning: regression"
-date: 2019-11-12T12:30:00
+title: "Statistical learning"
+date: 2020-05-11T13:30:00
 publishDate: 2019-05-06T13:30:00
 draft: false
 type: "talk"
 
-aliases: ["/cm011.html"]
+aliases: ["/cm011.html", "/syllabus/statistical-learning-regression"]
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_end: 2019-11-12T13:50:00
+time_end: 2020-05-11T14:50:00
 all_day: false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -17,10 +17,10 @@ authors: []
 
 # Abstract and optional shortened version.
 abstract: ""
-summary: "Review the goals of statistical learning, introduce methods for linear regression, and practice working with model objects in R."
+summary: "Review the goals of statistical learning, introduce methods for linear/logistic regression, and practice working with model objects in R."
 
 # Location of event.
-location: "Room 104, Stuart Hall, Chicago, IL"
+location: "Room 140C, 1155 E. 60th St., Chicago, IL"
 
 # Is this a selected talk? (true/false)
 selected: false
@@ -31,7 +31,7 @@ tags: []
 
 # Links (optional).
 url_pdf: ""
-url_slides: "/slides/statistical-learning-regression/"
+url_slides: "/slides/statistical-learning/"
 url_video: ""
 url_code: ""
 

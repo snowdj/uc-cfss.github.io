@@ -8,7 +8,7 @@ type: post
 aliases: ["/hw02-explore-data.html"]
 
 summary: "Transform and explore a cleaned dataset on gun deaths in the United States."
-url_code: "https://github.com/cfss-fa19/hw02"
+url_code: "https://github.com/cfss-sp20/hw02"
 ---
 
 
@@ -21,7 +21,7 @@ Now that you've demonstrated your software is setup, the goal of this assignment
 
 # Fork the `hw02` repository
 
-Go [here](https://github.com/cfss-fa19/hw02) to fork the repo.
+Go [here](https://github.com/cfss-sp20/hw02) to fork the repo.
 
 # Exploring clean data
 
@@ -102,11 +102,9 @@ Instead, use `kable()` to format the table, add a caption, and label the columns
 
 Run `?kable` in the console to see how additional options.
 
-> Note that when viewed on GitHub, table captions will not show up. Just a (missing) feature of Markdown on GitHub 🙍
-
 # Submit the assignment
 
-Your assignment should be submitted as an R Markdown document. **Don't know what an R Markdown document is? [Read this!](http://rmarkdown.rstudio.com/lesson-1.html) Or [this!](http://r4ds.had.co.nz/r-markdown.html)** I have included starter files for you to modify to complete the assignment, so you are not beginning completely from scratch.
+Your assignment should be submitted as an R Markdown document using the `github_document` format. **Don't know what an R Markdown document is? [Read this!](http://rmarkdown.rstudio.com/lesson-1.html) Or [this!](http://r4ds.had.co.nz/r-markdown.html)** I have included starter files for you to modify to complete the assignment, so you are not beginning completely from scratch.
 
 Follow instructions on [homework workflow](/faq/homework-guidelines/#homework-workflow). As part of the pull request, you're encouraged to reflect on what was hard/easy, problems you solved, helpful tutorials you read, etc.
 

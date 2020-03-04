@@ -1,6 +1,6 @@
 ---
 title: "Debugging and defensive programming"
-date: 2019-10-29T12:30:00
+date: 2020-04-27T13:30:00
 publishDate: 2019-04-29T13:30:00
 draft: false
 type: "talk"
@@ -9,7 +9,7 @@ aliases: ["/cm009.html"]
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_end: 2019-10-29T13:50:00
+time_end: 2020-04-27T14:50:00
 all_day: false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -20,7 +20,7 @@ abstract: ""
 summary: "Define computer bugs, discuss defensive programming tactics, and practice troubleshooting scripts."
 
 # Location of event.
-location: "Room 104, Stuart Hall, Chicago, IL"
+location: "Room 140C, 1155 E. 60th St., Chicago, IL"
 
 # Is this a selected talk? (true/false)
 selected: false
@@ -51,7 +51,7 @@ math: false
 
 ## Before class
 
-* Read [**Debugging, condition handling, and defensive programming** in *Advanced R*](http://adv-r.had.co.nz/Exceptions-Debugging.html)
+* Read [**Debugging R code** in *Advanced R*](https://rstats.wtf/debugging-r-code.html)
 * Skim/read [The `tidyverse` style guide](http://style.tidyverse.org/)
 * Review [21.6 Dealing with failure in *R for Data Science*](http://r4ds.had.co.nz/iteration.html#dealing-with-failure)
 
