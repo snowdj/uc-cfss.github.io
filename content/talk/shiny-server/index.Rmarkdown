@@ -2,7 +2,7 @@
 title: "Building Shiny apps: server"
 date: 2020-05-27T15:00:00
 publishDate: 2019-05-22T13:30:00
-draft: false
+draft: true
 type: "talk"
 
 aliases: ["/cm020.html"]
@@ -20,7 +20,7 @@ abstract: ""
 summary: "Explain reactivity and construct the server function for a Shiny application."
 
 # Location of event.
-location: "Room 140C, 1155 E. 60th St., Chicago, IL"
+location: "Online"
 
 # Is this a selected talk? (true/false)
 selected: false

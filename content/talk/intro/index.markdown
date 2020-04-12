@@ -1,6 +1,6 @@
 ---
 title: "Introduction to computing for the social sciences"
-date: 2020-03-30T13:30:00
+date: 2020-04-06T13:30:00
 publishDate: 2019-08-01T13:30:00
 draft: false
 type: "talk"
@@ -9,7 +9,7 @@ aliases: ["/cm001.html"]
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_end: 2020-03-30T14:50:00
+time_end: 2020-04-06T14:50:00
 all_day: false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -20,7 +20,7 @@ abstract: ""
 summary: "Overview of programming, applications to social science, reproducible research, and course logistics."
 
 # Location of event.
-location: "Room 140C, 1155 E. 60th St., Chicago, IL"
+location: "Online"
 
 # Is this a selected talk? (true/false)
 selected: false
@@ -34,6 +34,7 @@ url_pdf: ""
 url_slides: "/slides/introduction-to-computing-for-the-social-sciences/"
 url_video: ""
 url_code: ""
+url_notes: "https://hackmd.io/@cfss-sp20/introduction-to-computing-for-the-social-sciences"
 
 # Does the content use math formatting?
 math: false
@@ -61,5 +62,5 @@ math: false
 ## What you need to do
 
 * [Install and setup software](/setup/)
-* [Register your GitHub username for the course](https://forms.gle/6YDKXHpEGPkc9sX28)
+* [Register your GitHub username for the course](https://forms.gle/U58Z6ShPWXewwJoF7)
 * [Begin homework 1](/homework/edit-readme/)

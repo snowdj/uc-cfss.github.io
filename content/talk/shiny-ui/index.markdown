@@ -2,7 +2,7 @@
 title: "Building Shiny apps: user interface"
 date: 2020-05-27T13:30:00
 publishDate: 2019-05-20T13:30:00
-draft: false
+draft: true
 type: "talk"
 
 aliases: ["/cm019.html"]
@@ -20,7 +20,7 @@ abstract: ""
 summary: "Introduce Shiny applications and practice constructing a user interface."
 
 # Location of event.
-location: "Room 140C, 1155 E. 60th St., Chicago, IL"
+location: "Online"
 
 # Is this a selected talk? (true/false)
 selected: false

@@ -1,6 +1,6 @@
 ---
 title: "Data transformation"
-date: 2020-04-06T13:30:00
+date: 2020-04-13T13:30:00
 publishDate: 2019-04-08T13:30:00
 draft: false
 type: "talk"
@@ -9,7 +9,7 @@ aliases: ["/cm003.html"]
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_end: 2020-04-06T14:50:00
+time_end: 2020-04-13T14:50:00
 all_day: false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -20,7 +20,7 @@ abstract: ""
 summary: "Computational problem-solving, verbs for data manipulation, and practice transforming data frames using dplyr."
 
 # Location of event.
-location: "Room 140C, 1155 E. 60th St., Chicago, IL"
+location: "Online"
 
 # Is this a selected talk? (true/false)
 selected: false
@@ -61,13 +61,20 @@ knitr::opts_chunk$set(echo = FALSE)
 * [`dplyr` in brief](/notes/dplyr/)
 * [Practice transforming college education (data)](/notes/transform-college/)
 
+    Run the below code in your console to download the required files.
+    
+    ```r
+    usethis::use_course("uc-cfss/data-transformation")
+    ```
+
+
 ## Additional resources
 
 * [Data Wrangling with `dplyr` and `tidyr` Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 ## What you need to do
 
-* [Register your GitHub username for the course](https://forms.gle/6YDKXHpEGPkc9sX28) - all remaining homework assignments will be in **private repositories**. Private repos can only be seen and edited by members of our [course organization](https://github.com/uc-cfss). Once you register your GitHub account, I will invite you to join the course organization. If you don't register your account, you won't have access to any of the homework assignments.
+* [Register your GitHub username for the course](https://forms.gle/U58Z6ShPWXewwJoF7) - all remaining homework assignments will be in **private repositories**. Private repos can only be seen and edited by members of our [course organization](https://github.com/uc-cfss). Once you register your GitHub account, I will invite you to join the course organization. If you don't register your account, you won't have access to any of the homework assignments.
 * Complete your peer evaluations for homework 01. Review the following:
     * [General Homework Rubric](/faq/homework-evaluations/)
     * [Performing peer review](/faq/peer-evaluations/)

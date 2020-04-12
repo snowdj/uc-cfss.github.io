@@ -18,7 +18,7 @@ abstract: ""
 summary: "No class."
 
 # Location of event.
-location: "Room 104, Stuart Hall, Chicago, IL"
+location: "Online"
 
 # Is this a selected talk? (true/false)
 selected: false

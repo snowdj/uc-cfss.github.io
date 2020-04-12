@@ -1,6 +1,6 @@
 ---
 title: "Data wrangling: relational data and factors"
-date: 2020-04-15T13:30:00
+date: 2020-04-22T13:30:00
 publishDate: 2019-04-17T13:30:00
 draft: false
 type: "talk"
@@ -9,7 +9,7 @@ aliases: ["/cm006.html"]
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_end: 2020-04-15T14:50:00
+time_end: 2020-04-22T14:50:00
 all_day: false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
@@ -20,7 +20,7 @@ abstract: ""
 summary: "Introduce relational data structures, and practice working with factor columns."
 
 # Location of event.
-location: "Room 140C, 1155 E. 60th St., Chicago, IL"
+location: "Online"
 
 # Is this a selected talk? (true/false)
 selected: false

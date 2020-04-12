@@ -15,7 +15,7 @@ url_code: "https://github.com/cfss-sp20/hw08"
 
 # Overview
 
-Due before class on November 26th.
+Due by 11:59pm CT (Chicago) on June 1st.
 
 We learned three ways of collecting data from the internet:
 
@@ -94,7 +94,7 @@ Check: Solid effort. Hits all the elements. No clear mistakes. Easy to follow (b
 
 Check plus: Estimate a statistical model for the `gapminder` question, or do something beyond producing a graph. Implement an advanced statistical learning model or extensive exploratory analysis. Write an API function that uses authentication.
 
-### Acknowledgments
+## Acknowledgments
 
 
 * This page is derived in part from ["UBC STAT 545A and 547M"](http://stat545.com), licensed under the [CC BY-NC 3.0 Creative Commons License](https://creativecommons.org/licenses/by-nc/3.0/).
