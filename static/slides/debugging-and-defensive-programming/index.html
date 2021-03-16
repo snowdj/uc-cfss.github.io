@@ -81,22 +81,6 @@ The crew of the space shuttle Challenger honoured us by the manner in which they
 
 ---
 
-# File names
-
-```r
-# Good
-fit-models.R
-utility-functions.R
-gun-deaths.Rmd
-
-# Bad
-foo.r
-stuff.r
-gun deaths.rmd
-```
-
----
-
 # Object names
 
 ```r
@@ -233,19 +217,9 @@ maps::map()     # use map() from the maps library
 
 ---
 
-# Exercise: style this code
+# Demonstration: styling code with `styler`
 
-![](https://cdn-mf0.heartyhosting.com/sites/mensfitness.com/files/_main_yoga.jpg)
-
----
-
-# Function documentation
-
-* [How to read an R help file](http://socviz.co/appendix.html#how-to-read-an-r-help-page)
-
---
-
-* What does `mutate()` do?
+* [This code example](/notes/style-guide/#exercise-style-this-code)
 
 ---
 
@@ -382,7 +356,7 @@ suppressMessages(demo_print())  # still output
 
 # Exercise: build a function with conditions
 
-![](https://images.agoramedia.com/everydayhealth/gcms/Yoga-Poses-to-Help-Ankylosing-Spondylitis-09-RM-722x406.jpg)
+&lt;div style="width:100%;height:0;padding-bottom:63%;position:relative;"&gt;&lt;iframe src="https://giphy.com/embed/VFDeGtRSHswfe" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;/div&gt;
 
 ---
 
@@ -527,7 +501,7 @@ str(y)
 
 # Exercise: handle conditions using `safely()`
 
-![](https://blog.fabletics.com/wp-content/uploads/2018/07/Warrior-3-980x653.jpg)
+&lt;div style="width:100%;height:0;padding-bottom:100%;position:relative;"&gt;&lt;iframe src="https://giphy.com/embed/3o85xunRezGKPOkcG4" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -580,30 +554,20 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 })();
 (function() {
   "use strict"
-  /* Replace <script> tags in slides area to make them executable
-   *
-   * Runs after post-processing of markdown source into slides and replaces only
-   * <script>s on the last slide of continued slides using the .has-continuation
-   * class added by xaringan. Finally, any <script>s in the slides area that
-   * aren't executed are commented out.
-   */
+  // Replace <script> tags in slides area to make them executable
   var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+    '.remark-slides-area .remark-slide-container script'
   );
   if (!scripts.length) return;
   for (var i = 0; i < scripts.length; i++) {
     var s = document.createElement('script');
     var code = document.createTextNode(scripts[i].textContent);
     s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
     scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-  var scriptsNotExecuted = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container.has-continuation script'
-  );
-  if (!scriptsNotExecuted.length) return;
-  for (var i = 0; i < scriptsNotExecuted.length; i++) {
-    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
-    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
   }
 })();
 (function() {

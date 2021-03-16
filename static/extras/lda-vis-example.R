@@ -45,3 +45,16 @@ load(file = here("static", "extras", "jokes_lda_compare.Rdata"))
 jokes_100_json <- topicmodels_json_ldavis(fitted = jokes_lda_compare[[6]],
                                          doc_term = jokes_dtm)
 serVis(jokes_100_json)
+
+# 6 - guy walks into a bar
+# 23 - change a lightbulb
+# 28 - little johnny/teacher
+# 29 - die and meet st peter
+# 39 - genie and 3 wishes
+# 45 - doctor/knock knock
+# 49 - chicken crossed the road
+# 97 - yo mama
+
+
+
+

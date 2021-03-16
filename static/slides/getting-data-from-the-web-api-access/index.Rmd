@@ -6,10 +6,12 @@ output: rcfss::xaringan
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(cache = TRUE,
-                      message = FALSE,
-                      warning = FALSE,
-                      fig.retina = 2, fig.width = 12)
+knitr::opts_chunk$set(
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.retina = 2, fig.width = 12
+)
 
 library(tidyverse)
 library(broom)
@@ -25,6 +27,7 @@ library(manifestoR)
 library(httr)
 library(rtweet)
 library(viridis)
+library(flipbookr)
 
 set.seed(1234)
 theme_set(theme_minimal(base_size = rcfss::base_size))
@@ -46,11 +49,29 @@ theme_set(theme_minimal(base_size = rcfss::base_size))
 
 ---
 
-# Data supplied on the web
+# Application programming interface (API)
 
-* Application programming interface (API)
-* Client
-* Server
+- Representational State Transfer (REST)
+- Uniform Resource Location (URL)
+- HTTP methods
+    - GET
+    - POST
+
+---
+
+# Application programming interface (API)
+
+```{r wikipedia, echo = FALSE}
+knitr::include_graphics(path = "/img/wikipedia.png", error = FALSE)
+```
+
+---
+
+# RESTful queries
+
+1. Submit request to server via URL
+1. Return result in a structured format
+1. Parse results into a local format
 
 ---
 
@@ -58,10 +79,9 @@ theme_set(theme_minimal(base_size = rcfss::base_size))
 
 * Packages with R functions written for existing APIs
 * Useful because
-    * reproducible
-    * updating
-    * ease
-    * scaling
+    * Reproducible
+    * Up-to-date (ideally)
+    * Ease of access
 
 ---
 
@@ -86,6 +106,11 @@ options("this_is_my_key" = XXXX)
 # later, in the R script:
 key <- getOption("this_is_my_key")
 ```
+
+--
+
+* `usethis::edit_r_profile()`
+* Read the documentation - different packages have different storage methods
 
 ---
 
@@ -114,9 +139,11 @@ mpds %>%
   count(partyname) %>%
   ggplot(aes(fct_reorder(partyname, n), n)) +
   geom_col() +
-  labs(title = "Political manifestos published in Sweden",
-       x = NULL,
-       y = "Total (1948-present)") +
+  labs(
+    title = "Political manifestos published in Sweden",
+    x = NULL,
+    y = "Total (1948-present)"
+  ) +
   coord_flip()
 ```
 
@@ -124,15 +151,19 @@ mpds %>%
 
 # Download manifestos
 
-```{r manifestor-corpus, echo = FALSE, message = FALSE, warning = FALSE}
+```{r manifestor-corpus, include = FALSE}
 # download documents
-docs <- mp_corpus(countryname == "United States" & edate > as.Date("2012-01-01"))
+docs <- mp_corpus(countryname == "United States" & edate > as.Date("2016-01-01"))
+```
 
+```{r manifestor-corpus-wordcloud, dependson = "manifestor-corpus", echo = FALSE}
 # generate wordcloud of most common terms
 docs %>%
   tidy() %>%
-  mutate(party = factor(party, levels = c(61320, 61620),
-                        labels = c("Democratic Party", "Republican Party"))) %>%
+  mutate(party = factor(party,
+    levels = c(61320, 61620),
+    labels = c("Democratic Party", "Republican Party")
+  )) %>%
   unnest_tokens(word, text) %>%
   anti_join(stop_words) %>%
   count(party, word, sort = TRUE) %>%
@@ -168,9 +199,11 @@ census_api_key("YOUR API KEY GOES HERE")
 # Obtain data
 
 ```{r income-usa}
-usa_inc <- get_acs(geography = "state", 
-                   variables = c(medincome = "B19013_001"), 
-                   year = 2016)
+usa_inc <- get_acs(
+  geography = "state",
+  variables = c(medincome = "B19013_001"),
+  year = 2019
+)
 usa_inc
 ```
 
@@ -181,14 +214,20 @@ usa_inc
 ```{r income-usa-plot, echo = FALSE, fig.asp = .7}
 usa_inc %>%
   ggplot(aes(x = reorder(NAME, estimate), y = estimate)) +
-  geom_pointrange(aes(ymin = estimate - moe,
-                     ymax = estimate + moe),
-                  size = .25) +
+  geom_pointrange(aes(
+    ymin = estimate - moe,
+    ymax = estimate + moe
+  ),
+  size = .25
+  ) +
+  scale_y_continuous(labels = scales::dollar) +
   coord_flip() +
-  labs(title = "Household income by state",
-       subtitle = "2012-2016 American Community Survey",
-       x = "",
-       y = "ACS estimate (bars represent margin of error)") +
+  labs(
+    title = "Household income by state",
+    subtitle = "2019 American Community Survey (five-year estimates)",
+    x = "",
+    y = "ACS estimate (bars represent margin of error)"
+  ) +
   theme_minimal(base_size = rcfss::base_size * 0.7)
 ```
 
@@ -200,8 +239,9 @@ usa_inc %>%
 * REST API
 * Streaming API
 
-* [`twitteR`](https://cran.rstudio.com/web/packages/twitteR/index.html)
-* [`streamR`](https://cran.rstudio.com/web/packages/streamR/index.html)
+
+--
+
 * [`rtweet`](http://rtweet.info/)
 
 ---
@@ -234,7 +274,7 @@ rt
 # Searching users
 
 ```{r twitter-count}
-countvoncount <- get_timeline(user = "countvoncount", n = 1000)
+countvoncount <- get_timeline(user = "countvoncount", n = 2000)
 countvoncount
 ```
 
@@ -296,6 +336,15 @@ ts_plot(rt, by = "3 hours") +
 
 ---
 
+# Expected elements
+
+1. Authentication Key/Token
+1. Base URL
+1. Search Parameters
+1. Response Format
+
+---
+
 # Determine the shape of an API request
 
 ![](/img/ombd.png)
@@ -305,85 +354,72 @@ ts_plot(rt, by = "3 hours") +
 # Determine the shape of an API request
 
 ```http
-http://www.omdbapi.com/?apikey=[apikey]&t=Sharknado&y=2013&plot=short&r=xml
+http://www.omdbapi.com/?apikey=[apikey]&t=Sharknado&y=2013
 ```
 
-```http
-<?xml version="1.0" encoding="UTF-8"?><root response="True"><movie title="Sharknado" year="2013" rated="TV-14" released="11 Jul 2013" runtime="86 min" genre="Comedy, Horror, Sci-Fi" director="Anthony C. Ferrante" writer="Thunder Levin" actors="Ian Ziering, Tara Reid, John Heard, Cassandra Scerbo" plot="When a freak hurricane swamps Los Angeles, nature's deadliest killer rules sea, land, and air as thousands of sharks terrorize the waterlogged populace." language="English" country="USA" awards="1 win &amp; 2 nominations." poster="https://images-na.ssl-images-amazon.com/images/M/MV5BOTE2OTk4MTQzNV5BMl5BanBnXkFtZTcwODUxOTM3OQ@@._V1_SX300.jpg" metascore="N/A" imdbRating="3.3" imdbVotes="38,948" imdbID="tt2724064" type="movie"/></root>
+```{r echo = FALSE}
+GET(url = "http://www.omdbapi.com/?",
+    query = list(t = "Sharknado",
+                 y = 2013,
+                 apikey = getOption("omdb_key"))
+) %>%
+  content(type = "text") %>%
+  # print the contents in a clear structure
+  prettify()
 ```
 
 ---
 
-# Create a request in R
+# `httr::GET()`
 
-```{r omdb-key}
-# retrieve API key from .RProfile
+```{r omdb-key, include = FALSE}
 omdb_key <- getOption("omdb_key")
 ```
 
-```{r omdb-function, dependson = "omdb-key"}
-# function to create API request
-omdb <- function(Key, Title, Year, Plot, Format){
-  baseurl <- "http://www.omdbapi.com/?"
-  params <- c("apikey=", "t=", "y=", "plot=", "r=")
-  values <- c(Key, Title, Year, Plot, Format)
-  param_values <- map2_chr(params, values, str_c)
-  args <- str_c(param_values, collapse = "&")
-  str_c(baseurl, args)
-}
-
-omdb(omdb_key, "Sharknado", "2013", "short", "xml")
-```
-
----
-
-# `httr`
-
-* GET
-* POST
-* PUT
-* DELETE
-
----
-
-# `GET()` Sharknado
-
-```{r httr-json}
-sharknado_json <- omdb(omdb_key, "Sharknado", "2013", "short", "json")
-response_json <- GET(sharknado_json)
-content(response_json, as = "parsed", type = "application/json")
+```{r sharknado, dependson = "omdb-key"}
+sharknado <- GET(url = "http://www.omdbapi.com/?",
+    query = list(t = "Sharknado",
+                 y = 2013,
+                 apikey = omdb_key)
+)
 ```
 
 ---
 
 # JavaScript Object Notation (JSON)
 
-```javascript
-{
-  "crust": "original",
-  "toppings": ["cheese", "pepperoni", "garlic"],
-  "status": "cooking",
-  "customer": {
-    "name": "Brian",
-    "phone": "573-111-1111"
-  }
-}
+```{r httr-json, dependson = "sharknado"}
+content(sharknado, type = "text") %>%
+  # print the contents in a clear structure
+  prettify()
 ```
 
 ---
 
-# Headers
+# JSON
 
-```{r httr-headers, dependson = "httr-json"}
-headers(response_json)
+```{r sharknado-content, dependson = "sharknado"}
+sharknado_df <- content(sharknado) %>%
+  as_tibble()
+sharknado_df
 ```
 
 ---
 
-# HTTP status code
+# Additional information from `GET()`
 
-```{r httr-status, dependson = "httr-json"}
-status_code(response_json)
+```{r sharknado-url, dependson = "sharknado", eval = FALSE}
+sharknado$url
+```
+
+```{r sharknado-url-hidden, dependson = "sharknado", echo = FALSE}
+str_replace(string = sharknado$url, pattern = getOption("omdb_key"), replacement = "[apikey]")
+```
+
+--
+
+```{r sharknado-status, dependson = "sharknado"}
+status_code(sharknado)
 ```
 
 ---
@@ -402,25 +438,58 @@ Code | Status
 
 ---
 
-# Skip `omdb()`
+# Iteration through a set of movies
 
-```{r httr-get-only}
-sharknado_2 <- GET("http://www.omdbapi.com/?",
-                   query = list(t = "Sharknado 2: The Second One",
-                                y = 2014,
-                                plot = "short",
-                                r = "json",
-                                apikey = omdb_key))
+```{r omdb-function}
+omdb_api <- function(title, api_key){
+  # send GET request
+  response <- GET(url = "http://www.omdbapi.com/?",
+    query = list(t = title,
+                 apikey = api_key)
+  )
+  
+  # parse response to JSON
+  response_df <- content(response) %>%
+    as_tibble()
+  
+  # print a message to track progress
+  message(glue::glue("Scraping {title}..."))
+  
+  return(response_df)
+}
+```
 
-content(sharknado_2)
+---
+
+# Iteration through a set of movies
+
+```{r sharknados}
+sharknados <- c("Sharknado", "Sharknado 2", "Sharknado 3",
+                "Sharknado 4", "Sharknado 5")
+```
+
+```{r iterate-movies, dependson = c("omdb-function", "sharknados"), message = TRUE}
+# modify function to delay by one second
+omdb_api_slow <- purrr::slowly(f = omdb_api, rate = rate_delay(1))
+
+# iterate over all the films
+sharknados_df <- map_dfr(.x = sharknados, .f = omdb_api_slow, api_key = getOption("omdb_key"))
+```
+
+---
+
+# Iteration through a set of movies
+
+```{r iterate-results, dependson = "iterate-movies"}
+sharknados_df
 ```
 
 ---
 
 # Messy API responses
 
-```{r omdb-recursive, echo = FALSE, error = TRUE, warning = FALSE}
-content(response_json, as = "parsed", type = "application/json") %>% 
+```{r omdb-recursive, error = TRUE, warning = FALSE}
+content(sharknado) %>%
   as_tibble()
 ```
 
@@ -429,8 +498,8 @@ content(response_json, as = "parsed", type = "application/json") %>%
 # Whoops
 
 ```{r omdb-str, echo = FALSE}
-content(response_json, as = "parsed", type = "application/json") %>%
-  jsonedit(mode = "view", elementId = "sharknado")
+content(sharknado) %>%
+  str()
 ```
 
 ---
@@ -440,10 +509,10 @@ content(response_json, as = "parsed", type = "application/json") %>%
 * Art and craft of taking a deeply nested list and taming it into a tidy data set of rows and columns
 
 
-* `unnest_longer()`
-* `unnest_wider()`
-* `unnest_auto()`
-* `hoist()`
+* `unnest_longer()` - each row contains multiple observations
+* `unnest_wider()` - each row contains a single observation
+* `unnest_auto()` - make an educated guess
+* `hoist()` - extract a specific element
   
 ---
 
@@ -473,7 +542,7 @@ names(users$user[[1]])
 
 ```{r gh-users-unnest-wider, dependson = "gh-users-df"}
 users %>%
-  unnest_wider(user)
+  unnest_wider(col = user)
 ```
 
 ---
@@ -482,10 +551,11 @@ users %>%
 
 ```{r gh-users-hoist, dependson = "gh-users-df"}
 users %>%
-  hoist(user, 
-        followers = "followers", 
-        login = "login", 
-        url = "html_url"
+  hoist(
+    .col = user,
+    followers = "followers",
+    login = "login",
+    url = "html_url"
   )
 ```
 
@@ -503,7 +573,7 @@ users %>%
 
 ```{r gh-repos-unnest-longer, dependson = "gh-repos"}
 repos <- repos %>%
-  unnest_longer(repo)
+  unnest_longer(col = repo)
 repos
 ```
 
@@ -513,23 +583,24 @@ repos
 
 ```{r gh-repos-hoist, dependson = "gh-repos-unnest-longer"}
 repos %>%
-  hoist(repo, 
-        login = c("owner", "login"), 
-        name = "name",
-        homepage = "homepage",
-        watchers = "watchers_count"
+  hoist(
+    .col = repo,
+    login = c("owner", "login"),
+    name = "name",
+    homepage = "homepage",
+    watchers = "watchers_count"
   )
 ```
 
 ---
 
-# `unnest_auto()`
-
-```{r gh-repos-auto, message = TRUE}
-tibble(repo = gh_repos) %>% 
-  unnest_auto(repo) %>% 
-  unnest_auto(repo)
+```{r gh-repos-auto, include = FALSE}
+tibble(repo = gh_repos) %>%
+  unnest_auto(col = repo) %>%
+  unnest_auto(col = repo)
 ```
+
+`r chunk_reveal(chunk_name = "gh-repos-auto")`
 
 ---
 
@@ -546,7 +617,7 @@ chars
 
 ```{r got-wider}
 chars2 <- chars %>%
-  unnest_wider(char)
+  unnest_wider(col = char)
 chars2
 ```
 
@@ -556,7 +627,7 @@ chars2
 
 ```{r got-list-cols, dependson = "got-wider"}
 chars2 %>%
-  select_if(is.list)
+  select(where(is.list))
 ```
 
 ---
@@ -571,27 +642,49 @@ chars2 %>%
 
 ---
 
+class: inverse, center, middle
+
 # Every appearance per book/season
 
-```{r got-appearances, dependson = "got-wider"}
-chars2 %>% 
-  select(name, books, tvSeries) %>% 
-  pivot_longer(c(books, tvSeries), names_to = "media", values_to = "value") %>% 
-  unnest_longer(value)
+---
+
+```{r got-appearances, dependson = "got-wider", include = FALSE}
+select(
+  .data = chars2,
+  name, books, tvSeries
+) %>%
+  pivot_longer(
+    cols = c(books, tvSeries),
+    names_to = "media",
+    values_to = "value"
+  ) %>%
+  unnest_longer(col = value)
 ```
+
+`r chunk_reveal(chunk_name = "got-appearances", break_type = "auto")`
 
 ---
 
-# Match title to name
+class: inverse, center, middle
 
-```{r got-title-name, dependson = "got-wider"}
-chars2 %>% 
-  select(name, title = titles) %>% 
-  unnest_longer(title)
-```
+# Match character's title to their name
 
 ---
 
-# Practice rectangling
+```{r got-title-name, dependson = "got-wider", include = FALSE}
+select(
+  .data = chars2,
+  name,
+  title = titles
+) %>%
+  unnest_longer(col = title)
+```
 
-<div style="width:100%;height:0;padding-bottom:49%;position:relative;"><iframe src="https://giphy.com/embed/1l522MnWgimYM" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+`r chunk_reveal(chunk_name = "got-title-name", break_type = "auto")`
+
+---
+
+# May the force be with you
+
+<div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe src="https://giphy.com/embed/C0ZArORmrDQCRTIFnQ" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+

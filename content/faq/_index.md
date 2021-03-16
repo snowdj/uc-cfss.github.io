@@ -130,6 +130,23 @@ A highly selective sampling of feedback from past course evaluations:
     * [Data visualization](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/ggplot2-cheatsheet-2.1.pdf)
     * [RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/rstudio-IDE-cheatsheet.pdf)
     * [And more!](https://www.rstudio.com/resources/cheatsheets/)
+    
+### Resources for under-represented groups in programming
+
+{{% callout note %}}
+
+Thanks to [Angela Li](https://angela-li.github.io/) for compiling these recommendations.
+
+{{% /callout %}}
+
+* [R LGBTQ Twitter](https://twitter.com/r_lgbtq): Affinity group for queer people in the R community -- Twitter often promotes events, panels and talks by and for queer R users. 
+* [Gayta Science Twitter](https://twitter.com/gaytascience): Alliance that uses data science techniques to give LGBTQ+ experiences a voice -- Twitter will often share data-driven work concerning the LGBTQ+ community. 
+* [RLadies Community Slack](http://bit.ly/rladies-slack): A global programming meetup for non-binary, trans, and female R users. 
+* [R Ladies Chicago Slack](https://rladiesinvite.herokuapp.com/): Local Chicago chapter of R Ladies -- hosts events, talks, and projects in the Chicago-land area. 
+* [RLadies Remote Twitter](https://twitter.com/RLadiesRemote): Remote chapter of R Ladies -- has Slack coffee chats to discuss programming topics in a supportive environment. 
+* [People of Color Code Meetup](https://www.meetup.com/People-of-Color-Code/): A meetup for POC software developers -- has events where POC developers can work on personal projects, collaborate, and learn. 
+* [R Forwards](https://forwards.github.io/): A task force set up by the R Foundation to address the under-representation of under-represented groups in the R community -- collects representation data in the R community, produces workshops and teaching materials 
+* [R Community Diversity and Inclusion Working Group](https://github.com/RConsortium/RCDI-WG): Working group set up by the R Consortium to encourage and support diversity and inclusion across a variety of events and platforms in the R community 
 
 ## Software
 
@@ -152,11 +169,51 @@ Each homework will be evaluated by either myself or the TA, as well as by **two 
 * [How to perform peer review](/faq/peer-evaluations/)
 * [How to properly ask for help](/faq/asking-questions/)
 
-## Statement on Disabilities
+## COVID-19-related policies
+
+### UChicago Health Pact
+
+All students on campus are required to adhere to the guidelines in the UChicago Health Pact in order to promote a safe environment in the classroom.
+
+* Secure face coverings must be worn appropriately at all times at all times while in University buildings
+* Maintain a distance of 6 feet from others
+* Do not attend and in-person class if you feel unwell or are experiencing COVID-19 related symptoms
+
+The complete text of the UChicago Health Pact along with additional information about COVID-19 protocols can be found [here](https://goforward.uchicago.edu/health-requirements/#healthpact).
+
+### Reporting COVID-19 related concerns
+
+Any concerns over inappropriate PPE usage, physical distancing, cleaning/disinfection, or other COVID-19 related public health concerns should be directed to [UCAIR](https://ehs-prd-01.uchicago.edu/ehsa-ucair/InjuryIllnessIndexUOFC-IT.html).
+
+If there is an emergency, call 773-702-8181 or dial 123 on any campus phone.
+
+### Reporting COVID-19 exposure or a confirmed case
+
+If you were potentially exposed to COVID-19 or your COVID-19 test results come back positive, reach out immediately to [C19HealthReport@uchicago.edu](mailto:C19HealthReport@uchicago.edu).
+
+### Recording and deletion policies for academic year 2020-21
+
+The Recording and Deletion Policies for the current academic year can be found in the Student Manual under [Petitions, Audio & Video Recording on Campus](https://studentmanual.uchicago.edu/administrative-policies/additional-administrative-regulations/petitions-audio-video-recording-on-campus/).
+
+* Do not record, share, or disseminate any course sessions, videos, transcripts, audio, or chats.
+* Do not share links for the course to those not currently enrolled.
+* Any Zoom cloud recordings will be automatically deleted 90 days after the completion of the recording.
+
+### Participation if you get COVID-19
+
+Students who have been exposed to or who are experiencing symptoms of COVID-19 should contact [UChicago Student Wellness](https://wellness.uchicago.edu/) immediately to be tested, and reach out to their area Dean of Students to request accommodations for classes until:
+
+* At least 10 days have passed since symptoms first appeared and;
+* At least 3 days (72 hours) have passed since recovery - defined as resolution of fever without the use of fever-reducing medications and improvement in respiratory symptoms (e.g., cough, shortness of breath).
+
+## Statement on diversity, inclusion, and disability
 
 The University of Chicago is committed to diversity and rigorous inquiry from multiple perspectives. The MAPSS, CIR, and Computation programs share this commitment and seek to foster productive learning environments based upon inclusion, open communication, and mutual respect for a diverse range of identities, experiences, and positions.
 
-This course is open to all students who meet the academic requirements for participation. Any student who has a documented need for accommodation should contact Student Disability Services (773-702-6000 or [disabilities@uchicago.edu](mailto:disabilities@uchicago.edu)) and provide me (Dr. Soltoff) with a copy of your Accommodation Determination Letter as soon as possible.
+The University of Chicago is committed to ensuring equitable access to our academic programs and services. Students with disabilities who have been approved for the use of academic accommodations by Student Disability Services (SDS) and need a reasonable accommodation(s) to participate fully in this course should follow the procedures established by SDS for using accommodations. Timely notifications are required in order to ensure that your accommodations can be implemented. Please meet with me to discuss your access needs in this class after you have completed the SDS procedures for requesting accommodations.
+
+* Email: [disabilities@uchicago.edu](mailto:disabilities@uchicago.edu)
+* Phone: 773-702-6000
 
 ## Acknowledgments
 

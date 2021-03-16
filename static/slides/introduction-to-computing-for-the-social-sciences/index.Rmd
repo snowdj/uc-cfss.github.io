@@ -7,7 +7,7 @@ output: rcfss::xaringan
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(cache = TRUE,
-                      fig.retina = 2, fig.width = 12)
+                      fig.retina = 2, fig.width = 12, fig.align = "center")
 
 library(tidyverse)
 library(broom)
@@ -16,25 +16,19 @@ set.seed(1234)
 theme_set(theme_minimal(base_size = rcfss::base_size))
 ```
 
-<div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe src="https://giphy.com/embed/8j2wrmWdc0Kf6" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
-
----
-
 # Me
 
-.center[
-
-![:scale 50%](/img/ben-soltoff.jpg)
-
-]
+```{r, echo = FALSE, out.height = "50%", out.width = "50%", fig.width = 6}
+knitr::include_graphics(path = "/img/ben-soltoff.jpg", error = FALSE)
+```
 
 ---
 
 # TAs
 
-* Deblina (Deb) Mukherjee
-* Dominique Janvier
-* Neeraj Sharma
+- Francesca Di Cera
+- Deblina Mukherjee
+- Neeraj Sharma
 
 ---
 
@@ -44,9 +38,9 @@ theme_set(theme_minimal(base_size = rcfss::base_size))
 
 ---
 
-class: center
-
-![](/img/bruce_computer.gif)
+```{r echo = FALSE}
+knitr::include_graphics(path = "/img/bruce_computer.gif", error = FALSE)
+```
 
 ---
 
@@ -241,13 +235,6 @@ class: center
 * Weekly programming assignments
 * Peer review
 
---
-
-## Special concerns for spring 2020
-
-* Grading standards
-* Pass/fail option
-
 ---
 
 class: center
@@ -308,7 +295,7 @@ class: center
 
 ### Jane: a GUI workflow
 
-1. Search for data files online
+1. Searches for data files online
 1. Cleans the files in Excel
 1. Analyzes the data in Stata
 1. Writes her report in Google Docs
@@ -325,7 +312,7 @@ class: center
     * `data`
     * `graphics`
     * `output`
-1. Search for data files online
+1. Searches for data files online
 1. Cleans the files in R
 1. Analyzes the files in R
 1. Writes her report in R Markdown
@@ -336,7 +323,9 @@ class: center
 
 # The results
 
-![Gandalf meme](https://www.barrioblues.com/uploads/1/4/6/1/1461397/gandalf-meme_orig.png)
+```{r, echo = FALSE, out.height = "70%", out.width = "70%", fig.width = 6}
+knitr::include_graphics(path = "https://i.imgflip.com/1szkun.jpg")
+```
 
 ---
 
@@ -431,7 +420,7 @@ tmls %>%
 
 # Good code
 
-```{r sesame-good, echo = FALSE, message = FALSE}
+```{r sesame-good, echo = FALSE, message = FALSE, cache = TRUE}
 ```
 
 ---

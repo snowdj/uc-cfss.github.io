@@ -7,10 +7,6 @@
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
     <link href="libs/remark-css/lucy-fonts.css" rel="stylesheet" />
-    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
-    <link href="libs/jsoneditor/jsoneditor.min.css" rel="stylesheet" />
-    <script src="libs/jsoneditor/jsoneditor.min.js"></script>
-    <script src="libs/jsonedit-binding/jsonedit.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -40,11 +36,27 @@ class: center, middle, inverse, title-slide
 
 ---
 
-# Data supplied on the web
+# Application programming interface (API)
 
-* Application programming interface (API)
-* Client
-* Server
+- Representational State Transfer (REST)
+- Uniform Resource Location (URL)
+- HTTP methods
+    - GET
+    - POST
+
+---
+
+# Application programming interface (API)
+
+![](/img/wikipedia.png)&lt;!-- --&gt;
+
+---
+
+# RESTful queries
+
+1. Submit request to server via URL
+1. Return result in a structured format
+1. Parse results into a local format
 
 ---
 
@@ -52,10 +64,9 @@ class: center, middle, inverse, title-slide
 
 * Packages with R functions written for existing APIs
 * Useful because
-    * reproducible
-    * updating
-    * ease
-    * scaling
+    * Reproducible
+    * Up-to-date (ideally)
+    * Ease of access
 
 ---
 
@@ -82,6 +93,11 @@ options("this_is_my_key" = XXXX)
 key &lt;- getOption("this_is_my_key")
 ```
 
+--
+
+* `usethis::edit_r_profile()`
+* Read the documentation - different packages have different storage methods
+
 ---
 
 # Load library and set API key
@@ -105,47 +121,45 @@ mp_setapikey(key = getOption("manifesto_key"))
 
 ```
 ## Connecting to Manifesto Project DB API... 
-## Connecting to Manifesto Project DB API... corpus version: 2018-2
+## Connecting to Manifesto Project DB API... corpus version: 2020-2
 ```
 
 ```
-## # A tibble: 4,388 x 174
-##    country countryname oecdmember eumember edate        date party
-##      &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt;
-##  1      11 Sweden               0        0 1944-09-17 194409 11220
-##  2      11 Sweden               0        0 1944-09-17 194409 11320
-##  3      11 Sweden               0        0 1944-09-17 194409 11420
-##  4      11 Sweden               0        0 1944-09-17 194409 11620
-##  5      11 Sweden               0        0 1944-09-17 194409 11810
-##  6      11 Sweden               0        0 1948-09-19 194809 11220
-##  7      11 Sweden               0        0 1948-09-19 194809 11320
-##  8      11 Sweden               0        0 1948-09-19 194809 11420
-##  9      11 Sweden               0        0 1948-09-19 194809 11620
-## 10      11 Sweden               0        0 1948-09-19 194809 11810
-## # … with 4,378 more rows, and 167 more variables: partyname &lt;chr&gt;,
-## #   partyabbrev &lt;chr&gt;, parfam &lt;dbl&gt;, coderid &lt;dbl&gt;, manual &lt;dbl&gt;,
-## #   coderyear &lt;dbl&gt;, testresult &lt;dbl&gt;, testeditsim &lt;dbl&gt;, pervote &lt;dbl&gt;,
-## #   voteest &lt;dbl&gt;, presvote &lt;dbl&gt;, absseat &lt;dbl&gt;, totseats &lt;dbl&gt;,
-## #   progtype &lt;dbl&gt;, datasetorigin &lt;dbl&gt;, corpusversion &lt;chr&gt;, total &lt;dbl&gt;,
-## #   peruncod &lt;dbl&gt;, per101 &lt;dbl&gt;, per102 &lt;dbl&gt;, per103 &lt;dbl&gt;,
-## #   per104 &lt;dbl&gt;, per105 &lt;dbl&gt;, per106 &lt;dbl&gt;, per107 &lt;dbl&gt;, per108 &lt;dbl&gt;,
-## #   per109 &lt;dbl&gt;, per110 &lt;dbl&gt;, per201 &lt;dbl&gt;, per202 &lt;dbl&gt;, per203 &lt;dbl&gt;,
-## #   per204 &lt;dbl&gt;, per301 &lt;dbl&gt;, per302 &lt;dbl&gt;, per303 &lt;dbl&gt;, per304 &lt;dbl&gt;,
-## #   per305 &lt;dbl&gt;, per401 &lt;dbl&gt;, per402 &lt;dbl&gt;, per403 &lt;dbl&gt;, per404 &lt;dbl&gt;,
-## #   per405 &lt;dbl&gt;, per406 &lt;dbl&gt;, per407 &lt;dbl&gt;, per408 &lt;dbl&gt;, per409 &lt;dbl&gt;,
-## #   per410 &lt;dbl&gt;, per411 &lt;dbl&gt;, per412 &lt;dbl&gt;, per413 &lt;dbl&gt;, per414 &lt;dbl&gt;,
-## #   per415 &lt;dbl&gt;, per416 &lt;dbl&gt;, per501 &lt;dbl&gt;, per502 &lt;dbl&gt;, per503 &lt;dbl&gt;,
-## #   per504 &lt;dbl&gt;, per505 &lt;dbl&gt;, per506 &lt;dbl&gt;, per507 &lt;dbl&gt;, per601 &lt;dbl&gt;,
-## #   per602 &lt;dbl&gt;, per603 &lt;dbl&gt;, per604 &lt;dbl&gt;, per605 &lt;dbl&gt;, per606 &lt;dbl&gt;,
-## #   per607 &lt;dbl&gt;, per608 &lt;dbl&gt;, per701 &lt;dbl&gt;, per702 &lt;dbl&gt;, per703 &lt;dbl&gt;,
-## #   per704 &lt;dbl&gt;, per705 &lt;dbl&gt;, per706 &lt;dbl&gt;, per1011 &lt;dbl&gt;,
-## #   per1012 &lt;dbl&gt;, per1013 &lt;dbl&gt;, per1014 &lt;dbl&gt;, per1015 &lt;dbl&gt;,
-## #   per1016 &lt;dbl&gt;, per1021 &lt;dbl&gt;, per1022 &lt;dbl&gt;, per1023 &lt;dbl&gt;,
-## #   per1024 &lt;dbl&gt;, per1025 &lt;dbl&gt;, per1026 &lt;dbl&gt;, per1031 &lt;dbl&gt;,
-## #   per1032 &lt;dbl&gt;, per1033 &lt;dbl&gt;, per2021 &lt;dbl&gt;, per2022 &lt;dbl&gt;,
-## #   per2023 &lt;dbl&gt;, per2031 &lt;dbl&gt;, per2032 &lt;dbl&gt;, per2033 &lt;dbl&gt;,
-## #   per2041 &lt;dbl&gt;, per3011 &lt;dbl&gt;, per3051 &lt;dbl&gt;, per3052 &lt;dbl&gt;,
-## #   per3053 &lt;dbl&gt;, …
+## # A tibble: 4,656 x 174
+##    country countryname oecdmember eumember edate        date party partyname    
+##      &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        
+##  1      11 Sweden               0        0 1944-09-17 194409 11220 Communist Pa…
+##  2      11 Sweden               0        0 1944-09-17 194409 11320 Social Democ…
+##  3      11 Sweden               0        0 1944-09-17 194409 11420 People’s Par…
+##  4      11 Sweden               0        0 1944-09-17 194409 11620 Right Party  
+##  5      11 Sweden               0        0 1944-09-17 194409 11810 Agrarian Par…
+##  6      11 Sweden               0        0 1948-09-19 194809 11220 Communist Pa…
+##  7      11 Sweden               0        0 1948-09-19 194809 11320 Social Democ…
+##  8      11 Sweden               0        0 1948-09-19 194809 11420 People’s Par…
+##  9      11 Sweden               0        0 1948-09-19 194809 11620 Right Party  
+## 10      11 Sweden               0        0 1948-09-19 194809 11810 Agrarian Par…
+## # … with 4,646 more rows, and 166 more variables: partyabbrev &lt;chr&gt;,
+## #   parfam &lt;dbl&gt;, coderid &lt;dbl&gt;, manual &lt;dbl&gt;, coderyear &lt;dbl&gt;,
+## #   testresult &lt;dbl&gt;, testeditsim &lt;dbl&gt;, pervote &lt;dbl&gt;, voteest &lt;dbl&gt;,
+## #   presvote &lt;dbl&gt;, absseat &lt;dbl&gt;, totseats &lt;dbl&gt;, progtype &lt;dbl&gt;,
+## #   datasetorigin &lt;dbl&gt;, corpusversion &lt;chr&gt;, total &lt;dbl&gt;, peruncod &lt;dbl&gt;,
+## #   per101 &lt;dbl&gt;, per102 &lt;dbl&gt;, per103 &lt;dbl&gt;, per104 &lt;dbl&gt;, per105 &lt;dbl&gt;,
+## #   per106 &lt;dbl&gt;, per107 &lt;dbl&gt;, per108 &lt;dbl&gt;, per109 &lt;dbl&gt;, per110 &lt;dbl&gt;,
+## #   per201 &lt;dbl&gt;, per202 &lt;dbl&gt;, per203 &lt;dbl&gt;, per204 &lt;dbl&gt;, per301 &lt;dbl&gt;,
+## #   per302 &lt;dbl&gt;, per303 &lt;dbl&gt;, per304 &lt;dbl&gt;, per305 &lt;dbl&gt;, per401 &lt;dbl&gt;,
+## #   per402 &lt;dbl&gt;, per403 &lt;dbl&gt;, per404 &lt;dbl&gt;, per405 &lt;dbl&gt;, per406 &lt;dbl&gt;,
+## #   per407 &lt;dbl&gt;, per408 &lt;dbl&gt;, per409 &lt;dbl&gt;, per410 &lt;dbl&gt;, per411 &lt;dbl&gt;,
+## #   per412 &lt;dbl&gt;, per413 &lt;dbl&gt;, per414 &lt;dbl&gt;, per415 &lt;dbl&gt;, per416 &lt;dbl&gt;,
+## #   per501 &lt;dbl&gt;, per502 &lt;dbl&gt;, per503 &lt;dbl&gt;, per504 &lt;dbl&gt;, per505 &lt;dbl&gt;,
+## #   per506 &lt;dbl&gt;, per507 &lt;dbl&gt;, per601 &lt;dbl&gt;, per602 &lt;dbl&gt;, per603 &lt;dbl&gt;,
+## #   per604 &lt;dbl&gt;, per605 &lt;dbl&gt;, per606 &lt;dbl&gt;, per607 &lt;dbl&gt;, per608 &lt;dbl&gt;,
+## #   per701 &lt;dbl&gt;, per702 &lt;dbl&gt;, per703 &lt;dbl&gt;, per704 &lt;dbl&gt;, per705 &lt;dbl&gt;,
+## #   per706 &lt;dbl&gt;, per1011 &lt;dbl&gt;, per1012 &lt;dbl&gt;, per1013 &lt;dbl&gt;, per1014 &lt;dbl&gt;,
+## #   per1015 &lt;dbl&gt;, per1016 &lt;dbl&gt;, per1021 &lt;dbl&gt;, per1022 &lt;dbl&gt;, per1023 &lt;dbl&gt;,
+## #   per1024 &lt;dbl&gt;, per1025 &lt;dbl&gt;, per1026 &lt;dbl&gt;, per1031 &lt;dbl&gt;, per1032 &lt;dbl&gt;,
+## #   per1033 &lt;dbl&gt;, per2021 &lt;dbl&gt;, per2022 &lt;dbl&gt;, per2023 &lt;dbl&gt;, per2031 &lt;dbl&gt;,
+## #   per2032 &lt;dbl&gt;, per2033 &lt;dbl&gt;, per2041 &lt;dbl&gt;, per3011 &lt;dbl&gt;, per3051 &lt;dbl&gt;,
+## #   per3052 &lt;dbl&gt;, per3053 &lt;dbl&gt;, per3054 &lt;dbl&gt;, …
 ```
 
 ---
@@ -157,16 +171,8 @@ mp_setapikey(key = getOption("manifesto_key"))
 # Download manifestos
 
 
-```
-## Connecting to Manifesto Project DB API... 
-## Connecting to Manifesto Project DB API... corpus version: 2018-2 
-## Connecting to Manifesto Project DB API... 
-## Connecting to Manifesto Project DB API... corpus version: 2018-2 
-## Connecting to Manifesto Project DB API... corpus version: 2018-2 
-## Connecting to Manifesto Project DB API... corpus version: 2018-2
-```
 
-&lt;img src="index_files/figure-html/manifestor-corpus-1.png" width="864" /&gt;
+&lt;img src="index_files/figure-html/manifestor-corpus-wordcloud-1.png" width="864" /&gt;
 
 ---
 
@@ -197,9 +203,11 @@ census_api_key("YOUR API KEY GOES HERE")
 
 
 ```r
-usa_inc &lt;- get_acs(geography = "state", 
-                   variables = c(medincome = "B19013_001"), 
-                   year = 2016)
+usa_inc &lt;- get_acs(
+  geography = "state",
+  variables = c(medincome = "B19013_001"),
+  year = 2019
+)
 usa_inc
 ```
 
@@ -207,16 +215,16 @@ usa_inc
 ## # A tibble: 52 x 5
 ##    GEOID NAME                 variable  estimate   moe
 ##    &lt;chr&gt; &lt;chr&gt;                &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
-##  1 01    Alabama              medincome    44758   314
-##  2 02    Alaska               medincome    74444   809
-##  3 04    Arizona              medincome    51340   231
-##  4 05    Arkansas             medincome    42336   234
-##  5 06    California           medincome    63783   188
-##  6 08    Colorado             medincome    62520   287
-##  7 09    Connecticut          medincome    71755   473
-##  8 10    Delaware             medincome    61017   723
-##  9 11    District of Columbia medincome    72935  1164
-## 10 12    Florida              medincome    48900   200
+##  1 01    Alabama              medincome    50536   304
+##  2 02    Alaska               medincome    77640  1015
+##  3 04    Arizona              medincome    58945   266
+##  4 05    Arkansas             medincome    47597   328
+##  5 06    California           medincome    75235   232
+##  6 08    Colorado             medincome    72331   370
+##  7 09    Connecticut          medincome    78444   553
+##  8 10    Delaware             medincome    68287   696
+##  9 11    District of Columbia medincome    86420  1008
+## 10 12    Florida              medincome    55660   220
 ## # … with 42 more rows
 ```
 
@@ -234,8 +242,9 @@ usa_inc
 * REST API
 * Streaming API
 
-* [`twitteR`](https://cran.rstudio.com/web/packages/twitteR/index.html)
-* [`streamR`](https://cran.rstudio.com/web/packages/streamR/index.html)
+
+--
+
 * [`rtweet`](http://rtweet.info/)
 
 ---
@@ -266,50 +275,48 @@ rt
 ```
 
 ```
-## # A tibble: 2,944 x 88
-##    user_id status_id created_at          screen_name text  source
-##    &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; 
-##  1 102484… 11265800… 2019-05-09 20:09:55 DrewSandbe… "@ja… Twitt…
-##  2 102484… 11265680… 2019-05-09 19:22:15 DrewSandbe… "@ha… Twitt…
-##  3 906150… 11265784… 2019-05-09 20:03:22 WitJakuczun "@Ki… Twitt…
-##  4 906150… 11258327… 2019-05-07 18:40:15 WitJakuczun @jim… Twitt…
-##  5 906150… 11258332… 2019-05-07 18:42:18 WitJakuczun This… Linke…
-##  6 233585… 11265781… 2019-05-09 20:02:07 CRANberrie… CRAN… CRANb…
-##  7 233585… 11250241… 2019-05-05 13:07:09 CRANberrie… CRAN… CRANb…
-##  8 233585… 11246302… 2019-05-04 11:02:03 CRANberrie… CRAN… CRANb…
-##  9 233585… 11262459… 2019-05-08 22:02:09 CRANberrie… CRAN… CRANb…
-## 10 233585… 11265179… 2019-05-09 16:02:51 CRANberrie… New … CRANb…
-## # … with 2,934 more rows, and 82 more variables: display_text_width &lt;dbl&gt;,
+## # A tibble: 2,993 x 90
+##    user_id   status_id   created_at          screen_name  text           source 
+##    &lt;chr&gt;     &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;        &lt;chr&gt;          &lt;chr&gt;  
+##  1 48182992… 1366423847… 2021-03-01 16:23:26 eo_wuerzburg "@Rsc4Earth T… Twitte…
+##  2 12921914… 1366423646… 2021-03-01 16:22:38 Programming… "Want to be a… Twitte…
+##  3 12921914… 1364824398… 2021-02-25 06:27:48 Programming… "Want to be a… Twitte…
+##  4 12921914… 1364824327… 2021-02-25 06:27:31 Programming… "Start Learni… Twitte…
+##  5 12921914… 1364824167… 2021-02-25 06:26:53 Programming… "Learn Social… Twitte…
+##  6 12921914… 1364548258… 2021-02-24 12:10:31 Programming… "Create Beaut… Twitte…
+##  7 12921914… 1365537509… 2021-02-27 05:41:27 Programming… "Want to be a… Twitte…
+##  8 12921914… 1365998815… 2021-02-28 12:14:31 Programming… "Start Learni… Twitte…
+##  9 12921914… 1366059377… 2021-02-28 16:15:10 Programming… "Learn Social… Twitte…
+## 10 12921914… 1366285100… 2021-03-01 07:12:06 Programming… "Create Your … Twitte…
+## # … with 2,983 more rows, and 84 more variables: display_text_width &lt;dbl&gt;,
 ## #   reply_to_status_id &lt;chr&gt;, reply_to_user_id &lt;chr&gt;,
 ## #   reply_to_screen_name &lt;chr&gt;, is_quote &lt;lgl&gt;, is_retweet &lt;lgl&gt;,
-## #   favorite_count &lt;int&gt;, retweet_count &lt;int&gt;, hashtags &lt;list&gt;,
-## #   symbols &lt;list&gt;, urls_url &lt;list&gt;, urls_t.co &lt;list&gt;,
-## #   urls_expanded_url &lt;list&gt;, media_url &lt;list&gt;, media_t.co &lt;list&gt;,
-## #   media_expanded_url &lt;list&gt;, media_type &lt;list&gt;, ext_media_url &lt;list&gt;,
-## #   ext_media_t.co &lt;list&gt;, ext_media_expanded_url &lt;list&gt;,
-## #   ext_media_type &lt;chr&gt;, mentions_user_id &lt;list&gt;,
-## #   mentions_screen_name &lt;list&gt;, lang &lt;chr&gt;, quoted_status_id &lt;chr&gt;,
-## #   quoted_text &lt;chr&gt;, quoted_created_at &lt;dttm&gt;, quoted_source &lt;chr&gt;,
-## #   quoted_favorite_count &lt;int&gt;, quoted_retweet_count &lt;int&gt;,
-## #   quoted_user_id &lt;chr&gt;, quoted_screen_name &lt;chr&gt;, quoted_name &lt;chr&gt;,
-## #   quoted_followers_count &lt;int&gt;, quoted_friends_count &lt;int&gt;,
-## #   quoted_statuses_count &lt;int&gt;, quoted_location &lt;chr&gt;,
-## #   quoted_description &lt;chr&gt;, quoted_verified &lt;lgl&gt;,
-## #   retweet_status_id &lt;chr&gt;, retweet_text &lt;chr&gt;,
-## #   retweet_created_at &lt;dttm&gt;, retweet_source &lt;chr&gt;,
-## #   retweet_favorite_count &lt;int&gt;, retweet_retweet_count &lt;int&gt;,
-## #   retweet_user_id &lt;chr&gt;, retweet_screen_name &lt;chr&gt;, retweet_name &lt;chr&gt;,
+## #   favorite_count &lt;int&gt;, retweet_count &lt;int&gt;, quote_count &lt;int&gt;,
+## #   reply_count &lt;int&gt;, hashtags &lt;list&gt;, symbols &lt;list&gt;, urls_url &lt;list&gt;,
+## #   urls_t.co &lt;list&gt;, urls_expanded_url &lt;list&gt;, media_url &lt;list&gt;,
+## #   media_t.co &lt;list&gt;, media_expanded_url &lt;list&gt;, media_type &lt;list&gt;,
+## #   ext_media_url &lt;list&gt;, ext_media_t.co &lt;list&gt;, ext_media_expanded_url &lt;list&gt;,
+## #   ext_media_type &lt;chr&gt;, mentions_user_id &lt;list&gt;, mentions_screen_name &lt;list&gt;,
+## #   lang &lt;chr&gt;, quoted_status_id &lt;chr&gt;, quoted_text &lt;chr&gt;,
+## #   quoted_created_at &lt;dttm&gt;, quoted_source &lt;chr&gt;, quoted_favorite_count &lt;int&gt;,
+## #   quoted_retweet_count &lt;int&gt;, quoted_user_id &lt;chr&gt;, quoted_screen_name &lt;chr&gt;,
+## #   quoted_name &lt;chr&gt;, quoted_followers_count &lt;int&gt;,
+## #   quoted_friends_count &lt;int&gt;, quoted_statuses_count &lt;int&gt;,
+## #   quoted_location &lt;chr&gt;, quoted_description &lt;chr&gt;, quoted_verified &lt;lgl&gt;,
+## #   retweet_status_id &lt;chr&gt;, retweet_text &lt;chr&gt;, retweet_created_at &lt;dttm&gt;,
+## #   retweet_source &lt;chr&gt;, retweet_favorite_count &lt;int&gt;,
+## #   retweet_retweet_count &lt;int&gt;, retweet_user_id &lt;chr&gt;,
+## #   retweet_screen_name &lt;chr&gt;, retweet_name &lt;chr&gt;,
 ## #   retweet_followers_count &lt;int&gt;, retweet_friends_count &lt;int&gt;,
 ## #   retweet_statuses_count &lt;int&gt;, retweet_location &lt;chr&gt;,
 ## #   retweet_description &lt;chr&gt;, retweet_verified &lt;lgl&gt;, place_url &lt;chr&gt;,
-## #   place_name &lt;chr&gt;, place_full_name &lt;chr&gt;, place_type &lt;chr&gt;,
-## #   country &lt;chr&gt;, country_code &lt;chr&gt;, geo_coords &lt;list&gt;,
-## #   coords_coords &lt;list&gt;, bbox_coords &lt;list&gt;, status_url &lt;chr&gt;,
-## #   name &lt;chr&gt;, location &lt;chr&gt;, description &lt;chr&gt;, url &lt;chr&gt;,
-## #   protected &lt;lgl&gt;, followers_count &lt;int&gt;, friends_count &lt;int&gt;,
-## #   listed_count &lt;int&gt;, statuses_count &lt;int&gt;, favourites_count &lt;int&gt;,
-## #   account_created_at &lt;dttm&gt;, verified &lt;lgl&gt;, profile_url &lt;chr&gt;,
-## #   profile_expanded_url &lt;chr&gt;, account_lang &lt;chr&gt;,
+## #   place_name &lt;chr&gt;, place_full_name &lt;chr&gt;, place_type &lt;chr&gt;, country &lt;chr&gt;,
+## #   country_code &lt;chr&gt;, geo_coords &lt;list&gt;, coords_coords &lt;list&gt;,
+## #   bbox_coords &lt;list&gt;, status_url &lt;chr&gt;, name &lt;chr&gt;, location &lt;chr&gt;,
+## #   description &lt;chr&gt;, url &lt;chr&gt;, protected &lt;lgl&gt;, followers_count &lt;int&gt;,
+## #   friends_count &lt;int&gt;, listed_count &lt;int&gt;, statuses_count &lt;int&gt;,
+## #   favourites_count &lt;int&gt;, account_created_at &lt;dttm&gt;, verified &lt;lgl&gt;,
+## #   profile_url &lt;chr&gt;, profile_expanded_url &lt;chr&gt;, account_lang &lt;lgl&gt;,
 ## #   profile_banner_url &lt;chr&gt;, profile_background_url &lt;chr&gt;,
 ## #   profile_image_url &lt;chr&gt;
 ```
@@ -320,55 +327,53 @@ rt
 
 
 ```r
-countvoncount &lt;- get_timeline(user = "countvoncount", n = 1000)
+countvoncount &lt;- get_timeline(user = "countvoncount", n = 2000)
 countvoncount
 ```
 
 ```
-## # A tibble: 1,000 x 88
-##    user_id status_id created_at          screen_name text  source
-##    &lt;chr&gt;   &lt;chr&gt;     &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; 
-##  1 555129… 11264981… 2019-05-09 14:44:32 CountVonCo… Two … Count…
-##  2 555129… 11263018… 2019-05-09 01:44:31 CountVonCo… Two … Count…
-##  3 555129… 11261508… 2019-05-08 15:44:30 CountVonCo… Two … Count…
-##  4 555129… 11258186… 2019-05-07 17:44:28 CountVonCo… Two … Count…
-##  5 555129… 11255015… 2019-05-06 20:44:25 CountVonCo… Two … Count…
-##  6 555129… 11251240… 2019-05-05 19:44:23 CountVonCo… Two … Count…
-##  7 555129… 11248069… 2019-05-04 22:44:21 CountVonCo… Two … Count…
-##  8 555129… 11246560… 2019-05-04 12:44:20 CountVonCo… Two … Count…
-##  9 555129… 11245050… 2019-05-04 02:44:19 CountVonCo… Two … Count…
-## 10 555129… 11244446… 2019-05-03 22:44:18 CountVonCo… Two … Count…
-## # … with 990 more rows, and 82 more variables: display_text_width &lt;dbl&gt;,
+## # A tibble: 2,000 x 90
+##    user_id  status_id    created_at          screen_name text          source   
+##    &lt;chr&gt;    &lt;chr&gt;        &lt;dttm&gt;              &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;    
+##  1 5551297… 13661857178… 2021-03-01 00:37:12 CountVonCo… Two thousand… CountVou…
+##  2 5551297… 13661253185… 2021-02-28 20:37:11 CountVonCo… Two thousand… CountVou…
+##  3 5551297… 13658535225… 2021-02-28 02:37:10 CountVonCo… Two thousand… CountVou…
+##  4 5551297… 13657629236… 2021-02-27 20:37:10 CountVonCo… Two thousand… CountVou…
+##  5 5551297… 13654458284… 2021-02-26 23:37:08 CountVonCo… Two thousand… CountVou…
+##  6 5551297… 13650381344… 2021-02-25 20:37:07 CountVonCo… Two thousand… CountVou…
+##  7 5551297… 13649324359… 2021-02-25 13:37:06 CountVonCo… Two thousand… CountVou…
+##  8 5551297… 13647663379… 2021-02-25 02:37:05 CountVonCo… Two thousand… CountVou…
+##  9 5551297… 13645851405… 2021-02-24 14:37:04 CountVonCo… Two thousand… CountVou…
+## 10 5551297… 13643284440… 2021-02-23 21:37:03 CountVonCo… Two thousand… CountVou…
+## # … with 1,990 more rows, and 84 more variables: display_text_width &lt;dbl&gt;,
 ## #   reply_to_status_id &lt;lgl&gt;, reply_to_user_id &lt;lgl&gt;,
 ## #   reply_to_screen_name &lt;lgl&gt;, is_quote &lt;lgl&gt;, is_retweet &lt;lgl&gt;,
-## #   favorite_count &lt;int&gt;, retweet_count &lt;int&gt;, hashtags &lt;list&gt;,
-## #   symbols &lt;list&gt;, urls_url &lt;list&gt;, urls_t.co &lt;list&gt;,
-## #   urls_expanded_url &lt;list&gt;, media_url &lt;list&gt;, media_t.co &lt;list&gt;,
-## #   media_expanded_url &lt;list&gt;, media_type &lt;list&gt;, ext_media_url &lt;list&gt;,
-## #   ext_media_t.co &lt;list&gt;, ext_media_expanded_url &lt;list&gt;,
-## #   ext_media_type &lt;chr&gt;, mentions_user_id &lt;list&gt;,
-## #   mentions_screen_name &lt;list&gt;, lang &lt;chr&gt;, quoted_status_id &lt;chr&gt;,
-## #   quoted_text &lt;chr&gt;, quoted_created_at &lt;dttm&gt;, quoted_source &lt;chr&gt;,
-## #   quoted_favorite_count &lt;int&gt;, quoted_retweet_count &lt;int&gt;,
-## #   quoted_user_id &lt;chr&gt;, quoted_screen_name &lt;chr&gt;, quoted_name &lt;chr&gt;,
-## #   quoted_followers_count &lt;int&gt;, quoted_friends_count &lt;int&gt;,
-## #   quoted_statuses_count &lt;int&gt;, quoted_location &lt;chr&gt;,
-## #   quoted_description &lt;chr&gt;, quoted_verified &lt;lgl&gt;,
-## #   retweet_status_id &lt;chr&gt;, retweet_text &lt;chr&gt;,
-## #   retweet_created_at &lt;dttm&gt;, retweet_source &lt;chr&gt;,
-## #   retweet_favorite_count &lt;int&gt;, retweet_retweet_count &lt;int&gt;,
-## #   retweet_user_id &lt;chr&gt;, retweet_screen_name &lt;chr&gt;, retweet_name &lt;chr&gt;,
+## #   favorite_count &lt;int&gt;, retweet_count &lt;int&gt;, quote_count &lt;int&gt;,
+## #   reply_count &lt;int&gt;, hashtags &lt;list&gt;, symbols &lt;list&gt;, urls_url &lt;list&gt;,
+## #   urls_t.co &lt;list&gt;, urls_expanded_url &lt;list&gt;, media_url &lt;list&gt;,
+## #   media_t.co &lt;list&gt;, media_expanded_url &lt;list&gt;, media_type &lt;list&gt;,
+## #   ext_media_url &lt;list&gt;, ext_media_t.co &lt;list&gt;, ext_media_expanded_url &lt;list&gt;,
+## #   ext_media_type &lt;chr&gt;, mentions_user_id &lt;list&gt;, mentions_screen_name &lt;list&gt;,
+## #   lang &lt;chr&gt;, quoted_status_id &lt;chr&gt;, quoted_text &lt;chr&gt;,
+## #   quoted_created_at &lt;dttm&gt;, quoted_source &lt;chr&gt;, quoted_favorite_count &lt;int&gt;,
+## #   quoted_retweet_count &lt;int&gt;, quoted_user_id &lt;chr&gt;, quoted_screen_name &lt;chr&gt;,
+## #   quoted_name &lt;chr&gt;, quoted_followers_count &lt;int&gt;,
+## #   quoted_friends_count &lt;int&gt;, quoted_statuses_count &lt;int&gt;,
+## #   quoted_location &lt;chr&gt;, quoted_description &lt;chr&gt;, quoted_verified &lt;lgl&gt;,
+## #   retweet_status_id &lt;chr&gt;, retweet_text &lt;chr&gt;, retweet_created_at &lt;dttm&gt;,
+## #   retweet_source &lt;chr&gt;, retweet_favorite_count &lt;int&gt;,
+## #   retweet_retweet_count &lt;int&gt;, retweet_user_id &lt;chr&gt;,
+## #   retweet_screen_name &lt;chr&gt;, retweet_name &lt;chr&gt;,
 ## #   retweet_followers_count &lt;int&gt;, retweet_friends_count &lt;int&gt;,
 ## #   retweet_statuses_count &lt;int&gt;, retweet_location &lt;chr&gt;,
 ## #   retweet_description &lt;chr&gt;, retweet_verified &lt;lgl&gt;, place_url &lt;chr&gt;,
-## #   place_name &lt;chr&gt;, place_full_name &lt;chr&gt;, place_type &lt;chr&gt;,
-## #   country &lt;chr&gt;, country_code &lt;chr&gt;, geo_coords &lt;list&gt;,
-## #   coords_coords &lt;list&gt;, bbox_coords &lt;list&gt;, status_url &lt;chr&gt;,
-## #   name &lt;chr&gt;, location &lt;chr&gt;, description &lt;chr&gt;, url &lt;lgl&gt;,
-## #   protected &lt;lgl&gt;, followers_count &lt;int&gt;, friends_count &lt;int&gt;,
-## #   listed_count &lt;int&gt;, statuses_count &lt;int&gt;, favourites_count &lt;int&gt;,
-## #   account_created_at &lt;dttm&gt;, verified &lt;lgl&gt;, profile_url &lt;chr&gt;,
-## #   profile_expanded_url &lt;chr&gt;, account_lang &lt;chr&gt;,
+## #   place_name &lt;chr&gt;, place_full_name &lt;chr&gt;, place_type &lt;chr&gt;, country &lt;chr&gt;,
+## #   country_code &lt;chr&gt;, geo_coords &lt;list&gt;, coords_coords &lt;list&gt;,
+## #   bbox_coords &lt;list&gt;, status_url &lt;chr&gt;, name &lt;chr&gt;, location &lt;chr&gt;,
+## #   description &lt;chr&gt;, url &lt;lgl&gt;, protected &lt;lgl&gt;, followers_count &lt;int&gt;,
+## #   friends_count &lt;int&gt;, listed_count &lt;int&gt;, statuses_count &lt;int&gt;,
+## #   favourites_count &lt;int&gt;, account_created_at &lt;dttm&gt;, verified &lt;lgl&gt;,
+## #   profile_url &lt;chr&gt;, profile_expanded_url &lt;chr&gt;, account_lang &lt;lgl&gt;,
 ## #   profile_banner_url &lt;chr&gt;, profile_background_url &lt;chr&gt;,
 ## #   profile_image_url &lt;chr&gt;
 ```
@@ -440,6 +445,15 @@ ts_plot(rt, by = "3 hours") +
 
 ---
 
+# Expected elements
+
+1. Authentication Key/Token
+1. Base URL
+1. Search Parameters
+1. Response Format
+
+---
+
 # Determine the shape of an API request
 
 ![](/img/ombd.png)
@@ -449,239 +463,158 @@ ts_plot(rt, by = "3 hours") +
 # Determine the shape of an API request
 
 ```http
-http://www.omdbapi.com/?apikey=[apikey]&amp;t=Sharknado&amp;y=2013&amp;plot=short&amp;r=xml
+http://www.omdbapi.com/?apikey=[apikey]&amp;t=Sharknado&amp;y=2013
 ```
 
-```http
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;root response="True"&gt;&lt;movie title="Sharknado" year="2013" rated="TV-14" released="11 Jul 2013" runtime="86 min" genre="Comedy, Horror, Sci-Fi" director="Anthony C. Ferrante" writer="Thunder Levin" actors="Ian Ziering, Tara Reid, John Heard, Cassandra Scerbo" plot="When a freak hurricane swamps Los Angeles, nature's deadliest killer rules sea, land, and air as thousands of sharks terrorize the waterlogged populace." language="English" country="USA" awards="1 win &amp;amp; 2 nominations." poster="https://images-na.ssl-images-amazon.com/images/M/MV5BOTE2OTk4MTQzNV5BMl5BanBnXkFtZTcwODUxOTM3OQ@@._V1_SX300.jpg" metascore="N/A" imdbRating="3.3" imdbVotes="38,948" imdbID="tt2724064" type="movie"/&gt;&lt;/root&gt;
+
+```
+## {
+##     "Title": "Sharknado",
+##     "Year": "2013",
+##     "Rated": "TV-14",
+##     "Released": "11 Jul 2013",
+##     "Runtime": "86 min",
+##     "Genre": "Action, Adventure, Comedy, Horror, Sci-Fi, Thriller",
+##     "Director": "Anthony C. Ferrante",
+##     "Writer": "Thunder Levin",
+##     "Actors": "Ian Ziering, Tara Reid, John Heard, Cassandra Scerbo",
+##     "Plot": "When a freak hurricane swamps Los Angeles, nature's deadliest killer rules sea, land, and air as thousands of sharks terrorize the waterlogged populace.",
+##     "Language": "English",
+##     "Country": "USA",
+##     "Awards": "1 win &amp; 2 nominations.",
+##     "Poster": "https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+##     "Ratings": [
+##         {
+##             "Source": "Internet Movie Database",
+##             "Value": "3.3/10"
+##         },
+##         {
+##             "Source": "Rotten Tomatoes",
+##             "Value": "74%"
+##         }
+##     ],
+##     "Metascore": "N/A",
+##     "imdbRating": "3.3",
+##     "imdbVotes": "46,579",
+##     "imdbID": "tt2724064",
+##     "Type": "movie",
+##     "DVD": "N/A",
+##     "BoxOffice": "N/A",
+##     "Production": "The Asylum, Southward Films",
+##     "Website": "N/A",
+##     "Response": "True"
+## }
+## 
 ```
 
 ---
 
-# Create a request in R
+# `httr::GET()`
+
+
 
 
 ```r
-# retrieve API key from .RProfile
-omdb_key &lt;- getOption("omdb_key")
-```
-
-
-```r
-# function to create API request
-omdb &lt;- function(Key, Title, Year, Plot, Format){
-  baseurl &lt;- "http://www.omdbapi.com/?"
-  params &lt;- c("apikey=", "t=", "y=", "plot=", "r=")
-  values &lt;- c(Key, Title, Year, Plot, Format)
-  param_values &lt;- map2_chr(params, values, str_c)
-  args &lt;- str_c(param_values, collapse = "&amp;")
-  str_c(baseurl, args)
-}
-
-omdb(omdb_key, "Sharknado", "2013", "short", "xml")
-```
-
-```
-## [1] "http://www.omdbapi.com/?apikey=775e324f&amp;t=Sharknado&amp;y=2013&amp;plot=short&amp;r=xml"
-```
-
----
-
-# `httr`
-
-* GET
-* POST
-* PUT
-* DELETE
-
----
-
-# `GET()` Sharknado
-
-
-```r
-sharknado_json &lt;- omdb(omdb_key, "Sharknado", "2013", "short", "json")
-response_json &lt;- GET(sharknado_json)
-content(response_json, as = "parsed", type = "application/json")
-```
-
-```
-## $Title
-## [1] "Sharknado"
-## 
-## $Year
-## [1] "2013"
-## 
-## $Rated
-## [1] "TV-14"
-## 
-## $Released
-## [1] "11 Jul 2013"
-## 
-## $Runtime
-## [1] "86 min"
-## 
-## $Genre
-## [1] "Action, Adventure, Comedy, Horror, Sci-Fi, Thriller"
-## 
-## $Director
-## [1] "Anthony C. Ferrante"
-## 
-## $Writer
-## [1] "Thunder Levin"
-## 
-## $Actors
-## [1] "Ian Ziering, Tara Reid, John Heard, Cassandra Scerbo"
-## 
-## $Plot
-## [1] "When a freak hurricane swamps Los Angeles, nature's deadliest killer rules sea, land, and air as thousands of sharks terrorize the waterlogged populace."
-## 
-## $Language
-## [1] "English"
-## 
-## $Country
-## [1] "USA"
-## 
-## $Awards
-## [1] "1 win &amp; 2 nominations."
-## 
-## $Poster
-## [1] "https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
-## 
-## $Ratings
-## $Ratings[[1]]
-## $Ratings[[1]]$Source
-## [1] "Internet Movie Database"
-## 
-## $Ratings[[1]]$Value
-## [1] "3.3/10"
-## 
-## 
-## $Ratings[[2]]
-## $Ratings[[2]]$Source
-## [1] "Rotten Tomatoes"
-## 
-## $Ratings[[2]]$Value
-## [1] "82%"
-## 
-## 
-## 
-## $Metascore
-## [1] "N/A"
-## 
-## $imdbRating
-## [1] "3.3"
-## 
-## $imdbVotes
-## [1] "43,077"
-## 
-## $imdbID
-## [1] "tt2724064"
-## 
-## $Type
-## [1] "movie"
-## 
-## $DVD
-## [1] "03 Sep 2013"
-## 
-## $BoxOffice
-## [1] "N/A"
-## 
-## $Production
-## [1] "NCM Fathom"
-## 
-## $Website
-## [1] "http://www.mtivideo.com/TitleView.aspx?TITLE_ID=728"
-## 
-## $Response
-## [1] "True"
+sharknado &lt;- GET(url = "http://www.omdbapi.com/?",
+    query = list(t = "Sharknado",
+                 y = 2013,
+                 apikey = omdb_key)
+)
 ```
 
 ---
 
 # JavaScript Object Notation (JSON)
 
-```javascript
-{
-  "crust": "original",
-  "toppings": ["cheese", "pepperoni", "garlic"],
-  "status": "cooking",
-  "customer": {
-    "name": "Brian",
-    "phone": "573-111-1111"
-  }
-}
+
+```r
+content(sharknado, type = "text") %&gt;%
+  # print the contents in a clear structure
+  prettify()
+```
+
+```
+## {
+##     "Title": "Sharknado",
+##     "Year": "2013",
+##     "Rated": "TV-14",
+##     "Released": "11 Jul 2013",
+##     "Runtime": "86 min",
+##     "Genre": "Action, Adventure, Comedy, Horror, Sci-Fi, Thriller",
+##     "Director": "Anthony C. Ferrante",
+##     "Writer": "Thunder Levin",
+##     "Actors": "Ian Ziering, Tara Reid, John Heard, Cassandra Scerbo",
+##     "Plot": "When a freak hurricane swamps Los Angeles, nature's deadliest killer rules sea, land, and air as thousands of sharks terrorize the waterlogged populace.",
+##     "Language": "English",
+##     "Country": "USA",
+##     "Awards": "1 win &amp; 2 nominations.",
+##     "Poster": "https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+##     "Ratings": [
+##         {
+##             "Source": "Internet Movie Database",
+##             "Value": "3.3/10"
+##         },
+##         {
+##             "Source": "Rotten Tomatoes",
+##             "Value": "74%"
+##         }
+##     ],
+##     "Metascore": "N/A",
+##     "imdbRating": "3.3",
+##     "imdbVotes": "46,579",
+##     "imdbID": "tt2724064",
+##     "Type": "movie",
+##     "DVD": "N/A",
+##     "BoxOffice": "N/A",
+##     "Production": "The Asylum, Southward Films",
+##     "Website": "N/A",
+##     "Response": "True"
+## }
+## 
 ```
 
 ---
 
-# Headers
+# JSON
 
 
 ```r
-headers(response_json)
+sharknado_df &lt;- content(sharknado) %&gt;%
+  as_tibble()
+sharknado_df
 ```
 
 ```
-## $date
-## [1] "Thu, 09 May 2019 20:19:58 GMT"
-## 
-## $`content-type`
-## [1] "application/json; charset=utf-8"
-## 
-## $`transfer-encoding`
-## [1] "chunked"
-## 
-## $connection
-## [1] "keep-alive"
-## 
-## $`set-cookie`
-## [1] "__cfduid=d27560c5a5b307267cb6425249c1b2e3f1557433198; expires=Fri, 08-May-20 20:19:58 GMT; path=/; domain=.omdbapi.com; HttpOnly"
-## 
-## $`cache-control`
-## [1] "public, max-age=86400"
-## 
-## $expires
-## [1] "Fri, 10 May 2019 20:19:58 GMT"
-## 
-## $`last-modified`
-## [1] "Thu, 09 May 2019 20:19:58 GMT"
-## 
-## $vary
-## [1] "*, Accept-Encoding"
-## 
-## $`x-aspnet-version`
-## [1] "4.0.30319"
-## 
-## $`x-powered-by`
-## [1] "ASP.NET"
-## 
-## $`access-control-allow-origin`
-## [1] "*"
-## 
-## $`cf-cache-status`
-## [1] "HIT"
-## 
-## $server
-## [1] "cloudflare"
-## 
-## $`cf-ray`
-## [1] "4d465f110c5cc504-ORD"
-## 
-## $`content-encoding`
-## [1] "gzip"
-## 
-## attr(,"class")
-## [1] "insensitive" "list"
+## # A tibble: 2 x 25
+##   Title Year  Rated Released Runtime Genre Director Writer Actors Plot  Language
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   
+## 1 Shar… 2013  TV-14 11 Jul … 86 min  Acti… Anthony… Thund… Ian Z… When… English 
+## 2 Shar… 2013  TV-14 11 Jul … 86 min  Acti… Anthony… Thund… Ian Z… When… English 
+## # … with 14 more variables: Country &lt;chr&gt;, Awards &lt;chr&gt;, Poster &lt;chr&gt;,
+## #   Ratings &lt;list&gt;, Metascore &lt;chr&gt;, imdbRating &lt;chr&gt;, imdbVotes &lt;chr&gt;,
+## #   imdbID &lt;chr&gt;, Type &lt;chr&gt;, DVD &lt;chr&gt;, BoxOffice &lt;chr&gt;, Production &lt;chr&gt;,
+## #   Website &lt;chr&gt;, Response &lt;chr&gt;
 ```
 
 ---
 
-# HTTP status code
+# Additional information from `GET()`
 
 
 ```r
-status_code(response_json)
+sharknado$url
+```
+
+
+```
+## [1] "http://www.omdbapi.com/?t=Sharknado&amp;y=2013&amp;apikey=[apikey]"
+```
+
+--
+
+
+```r
+status_code(sharknado)
 ```
 
 ```
@@ -704,123 +637,90 @@ Code | Status
 
 ---
 
-# Skip `omdb()`
+# Iteration through a set of movies
 
 
 ```r
-sharknado_2 &lt;- GET("http://www.omdbapi.com/?",
-                   query = list(t = "Sharknado 2: The Second One",
-                                y = 2014,
-                                plot = "short",
-                                r = "json",
-                                apikey = omdb_key))
-
-content(sharknado_2)
-```
-
-```
-## $Title
-## [1] "Sharknado 2: The Second One"
-## 
-## $Year
-## [1] "2014"
-## 
-## $Rated
-## [1] "TV-14"
-## 
-## $Released
-## [1] "30 Jul 2014"
-## 
-## $Runtime
-## [1] "95 min"
-## 
-## $Genre
-## [1] "Action, Adventure, Comedy, Horror, Sci-Fi, Thriller"
-## 
-## $Director
-## [1] "Anthony C. Ferrante"
-## 
-## $Writer
-## [1] "Thunder Levin"
-## 
-## $Actors
-## [1] "Ian Ziering, Tara Reid, Vivica A. Fox, Mark McGrath"
-## 
-## $Plot
-## [1] "Fin and April are on their way to New York City, until a category seven hurricane spawns heavy rain, storm surges, and deadly Sharknadoes."
-## 
-## $Language
-## [1] "English"
-## 
-## $Country
-## [1] "USA"
-## 
-## $Awards
-## [1] "N/A"
-## 
-## $Poster
-## [1] "https://m.media-amazon.com/images/M/MV5BMjA0MTIxMDEwNF5BMl5BanBnXkFtZTgwMDk3ODIxMjE@._V1_SX300.jpg"
-## 
-## $Ratings
-## $Ratings[[1]]
-## $Ratings[[1]]$Source
-## [1] "Internet Movie Database"
-## 
-## $Ratings[[1]]$Value
-## [1] "4.1/10"
-## 
-## 
-## $Ratings[[2]]
-## $Ratings[[2]]$Source
-## [1] "Rotten Tomatoes"
-## 
-## $Ratings[[2]]$Value
-## [1] "59%"
-## 
-## 
-## 
-## $Metascore
-## [1] "N/A"
-## 
-## $imdbRating
-## [1] "4.1"
-## 
-## $imdbVotes
-## [1] "16,567"
-## 
-## $imdbID
-## [1] "tt3062074"
-## 
-## $Type
-## [1] "movie"
-## 
-## $DVD
-## [1] "07 Oct 2014"
-## 
-## $BoxOffice
-## [1] "N/A"
-## 
-## $Production
-## [1] "NCM Fathom"
-## 
-## $Website
-## [1] "N/A"
-## 
-## $Response
-## [1] "True"
+omdb_api &lt;- function(title, api_key){
+  # send GET request
+  response &lt;- GET(url = "http://www.omdbapi.com/?",
+    query = list(t = title,
+                 apikey = api_key)
+  )
+  
+  # parse response to JSON
+  response_df &lt;- content(response) %&gt;%
+    as_tibble()
+  
+  # print a message to track progress
+  message(glue::glue("Scraping {title}..."))
+  
+  return(response_df)
+}
 ```
 
 ---
 
-# Messy API responses
+# Iteration through a set of movies
 
+
+```r
+sharknados &lt;- c("Sharknado", "Sharknado 2", "Sharknado 3",
+                "Sharknado 4", "Sharknado 5")
+```
+
+
+```r
+# modify function to delay by one second
+omdb_api_slow &lt;- purrr::slowly(f = omdb_api, rate = rate_delay(1))
+
+# iterate over all the films
+sharknados_df &lt;- map_dfr(.x = sharknados, .f = omdb_api_slow, api_key = getOption("omdb_key"))
+```
 
 ```
-## # A tibble: 2 x 25
-##   Title Year  Rated Released Runtime Genre Director Writer Actors Plot 
-##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;
-## 1 Shar… 2013  TV-14 11 Jul … 86 min  Acti… Anthony… Thund… Ian Z… When…
-## 2 Shar… 2013  TV-14 11 Jul … 86 min  Acti… Anthony… Thund… Ian Z… When…
+## Scraping Sharknado...
+```
+
+```
+## Scraping Sharknado 2...
+```
+
+```
+## Scraping Sharknado 3...
+```
+
+```
+## Scraping Sharknado 4...
+```
+
+```
+## Scraping Sharknado 5...
+```
+
+---
+
+# Iteration through a set of movies
+
+
+```r
+sharknados_df
+```
+
+```
+## # A tibble: 10 x 25
+##    Title  Year  Rated Released  Runtime Genre   Director Writer  Actors  Plot   
+##    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+##  1 Shark… 2013  TV-14 11 Jul 2… 86 min  Action… Anthony… Thunde… Ian Zi… When a…
+##  2 Shark… 2013  TV-14 11 Jul 2… 86 min  Action… Anthony… Thunde… Ian Zi… When a…
+##  3 Shark… 2014  TV-14 30 Jul 2… 95 min  Action… Anthony… Thunde… Ian Zi… Fin an…
+##  4 Shark… 2014  TV-14 30 Jul 2… 95 min  Action… Anthony… Thunde… Ian Zi… Fin an…
+##  5 Shark… 2015  TV-14 22 Jul 2… 93 min  Action… Anthony… Thunde… Ian Zi… A mons…
+##  6 Shark… 2015  TV-14 22 Jul 2… 93 min  Action… Anthony… Thunde… Ian Zi… A mons…
+##  7 Shark… 2016  TV-14 31 Jul 2… 95 min  Action… Anthony… Thunde… Ian Zi… Fin, h…
+##  8 Shark… 2016  TV-14 31 Jul 2… 95 min  Action… Anthony… Thunde… Ian Zi… Fin, h…
+##  9 Shark… 2017  TV-14 06 Aug 2… 93 min  Action… Anthony… Thunde… Ian Zi… With m…
+## 10 Shark… 2017  TV-14 06 Aug 2… 93 min  Action… Anthony… Thunde… Ian Zi… With m…
 ## # … with 15 more variables: Language &lt;chr&gt;, Country &lt;chr&gt;, Awards &lt;chr&gt;,
 ## #   Poster &lt;chr&gt;, Ratings &lt;list&gt;, Metascore &lt;chr&gt;, imdbRating &lt;chr&gt;,
 ## #   imdbVotes &lt;chr&gt;, imdbID &lt;chr&gt;, Type &lt;chr&gt;, DVD &lt;chr&gt;, BoxOffice &lt;chr&gt;,
@@ -829,10 +729,65 @@ content(sharknado_2)
 
 ---
 
+# Messy API responses
+
+
+```r
+content(sharknado) %&gt;%
+  as_tibble()
+```
+
+```
+## # A tibble: 2 x 25
+##   Title Year  Rated Released Runtime Genre Director Writer Actors Plot  Language
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   
+## 1 Shar… 2013  TV-14 11 Jul … 86 min  Acti… Anthony… Thund… Ian Z… When… English 
+## 2 Shar… 2013  TV-14 11 Jul … 86 min  Acti… Anthony… Thund… Ian Z… When… English 
+## # … with 14 more variables: Country &lt;chr&gt;, Awards &lt;chr&gt;, Poster &lt;chr&gt;,
+## #   Ratings &lt;list&gt;, Metascore &lt;chr&gt;, imdbRating &lt;chr&gt;, imdbVotes &lt;chr&gt;,
+## #   imdbID &lt;chr&gt;, Type &lt;chr&gt;, DVD &lt;chr&gt;, BoxOffice &lt;chr&gt;, Production &lt;chr&gt;,
+## #   Website &lt;chr&gt;, Response &lt;chr&gt;
+```
+
+---
+
 # Whoops
 
-<div id="sharknado" style="width:864px;height:504px;" class="jsonedit html-widget"></div>
-<script type="application/json" data-for="sharknado">{"x":{"data":{"Title":"Sharknado","Year":"2013","Rated":"TV-14","Released":"11 Jul 2013","Runtime":"86 min","Genre":"Action, Adventure, Comedy, Horror, Sci-Fi, Thriller","Director":"Anthony C. Ferrante","Writer":"Thunder Levin","Actors":"Ian Ziering, Tara Reid, John Heard, Cassandra Scerbo","Plot":"When a freak hurricane swamps Los Angeles, nature's deadliest killer rules sea, land, and air as thousands of sharks terrorize the waterlogged populace.","Language":"English","Country":"USA","Awards":"1 win & 2 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"3.3/10"},{"Source":"Rotten Tomatoes","Value":"82%"}],"Metascore":"N/A","imdbRating":"3.3","imdbVotes":"43,077","imdbID":"tt2724064","Type":"movie","DVD":"03 Sep 2013","BoxOffice":"N/A","Production":"NCM Fathom","Website":"http://www.mtivideo.com/TitleView.aspx?TITLE_ID=728","Response":"True"},"options":{"mode":"view","modes":["code","form","text","tree","view"]}},"evals":[],"jsHooks":[]}</script>
+
+```
+## List of 25
+##  $ Title     : chr "Sharknado"
+##  $ Year      : chr "2013"
+##  $ Rated     : chr "TV-14"
+##  $ Released  : chr "11 Jul 2013"
+##  $ Runtime   : chr "86 min"
+##  $ Genre     : chr "Action, Adventure, Comedy, Horror, Sci-Fi, Thriller"
+##  $ Director  : chr "Anthony C. Ferrante"
+##  $ Writer    : chr "Thunder Levin"
+##  $ Actors    : chr "Ian Ziering, Tara Reid, John Heard, Cassandra Scerbo"
+##  $ Plot      : chr "When a freak hurricane swamps Los Angeles, nature's deadliest killer rules sea, land, and air as thousands of s"| __truncated__
+##  $ Language  : chr "English"
+##  $ Country   : chr "USA"
+##  $ Awards    : chr "1 win &amp; 2 nominations."
+##  $ Poster    : chr "https://m.media-amazon.com/images/M/MV5BODcwZWFiNTEtNDgzMC00ZmE2LWExMzYtNzZhZDgzNDc5NDkyXkEyXkFqcGdeQXVyMTQxNzM"| __truncated__
+##  $ Ratings   :List of 2
+##   ..$ :List of 2
+##   .. ..$ Source: chr "Internet Movie Database"
+##   .. ..$ Value : chr "3.3/10"
+##   ..$ :List of 2
+##   .. ..$ Source: chr "Rotten Tomatoes"
+##   .. ..$ Value : chr "74%"
+##  $ Metascore : chr "N/A"
+##  $ imdbRating: chr "3.3"
+##  $ imdbVotes : chr "46,579"
+##  $ imdbID    : chr "tt2724064"
+##  $ Type      : chr "movie"
+##  $ DVD       : chr "N/A"
+##  $ BoxOffice : chr "N/A"
+##  $ Production: chr "The Asylum, Southward Films"
+##  $ Website   : chr "N/A"
+##  $ Response  : chr "True"
+```
 
 ---
 
@@ -841,10 +796,10 @@ content(sharknado_2)
 * Art and craft of taking a deeply nested list and taming it into a tidy data set of rows and columns
 
 
-* `unnest_longer()`
-* `unnest_wider()`
-* `unnest_auto()`
-* `hoist()`
+* `unnest_longer()` - each row contains multiple observations
+* `unnest_wider()` - each row contains a single observation
+* `unnest_auto()` - make an educated guess
+* `hoist()` - extract a specific element
   
 ---
 
@@ -923,26 +878,25 @@ names(users$user[[1]])
 
 ```r
 users %&gt;%
-  unnest_wider(user)
+  unnest_wider(col = user)
 ```
 
 ```
 ## # A tibble: 6 x 30
-##   login     id avatar_url gravatar_id url   html_url followers_url
-##   &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;        
-## 1 gabo… 6.60e5 https://a… ""          http… https:/… https://api.…
-## 2 jenn… 5.99e5 https://a… ""          http… https:/… https://api.…
-## 3 jtle… 1.57e6 https://a… ""          http… https:/… https://api.…
-## 4 juli… 1.25e7 https://a… ""          http… https:/… https://api.…
-## 5 leep… 3.51e6 https://a… ""          http… https:/… https://api.…
-## 6 masa… 8.36e6 https://a… ""          http… https:/… https://api.…
-## # … with 23 more variables: following_url &lt;chr&gt;, gists_url &lt;chr&gt;,
-## #   starred_url &lt;chr&gt;, subscriptions_url &lt;chr&gt;, organizations_url &lt;chr&gt;,
-## #   repos_url &lt;chr&gt;, events_url &lt;chr&gt;, received_events_url &lt;chr&gt;,
-## #   type &lt;chr&gt;, site_admin &lt;lgl&gt;, name &lt;chr&gt;, company &lt;chr&gt;, blog &lt;chr&gt;,
-## #   location &lt;chr&gt;, email &lt;chr&gt;, public_repos &lt;int&gt;, public_gists &lt;int&gt;,
-## #   followers &lt;int&gt;, following &lt;int&gt;, created_at &lt;chr&gt;, updated_at &lt;chr&gt;,
-## #   bio &lt;chr&gt;, hireable &lt;lgl&gt;
+##   login     id avatar_url gravatar_id url   html_url followers_url following_url
+##   &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+## 1 gabo… 6.60e5 https://a… ""          http… https:/… https://api.… https://api.…
+## 2 jenn… 5.99e5 https://a… ""          http… https:/… https://api.… https://api.…
+## 3 jtle… 1.57e6 https://a… ""          http… https:/… https://api.… https://api.…
+## 4 juli… 1.25e7 https://a… ""          http… https:/… https://api.… https://api.…
+## 5 leep… 3.51e6 https://a… ""          http… https:/… https://api.… https://api.…
+## 6 masa… 8.36e6 https://a… ""          http… https:/… https://api.… https://api.…
+## # … with 22 more variables: gists_url &lt;chr&gt;, starred_url &lt;chr&gt;,
+## #   subscriptions_url &lt;chr&gt;, organizations_url &lt;chr&gt;, repos_url &lt;chr&gt;,
+## #   events_url &lt;chr&gt;, received_events_url &lt;chr&gt;, type &lt;chr&gt;, site_admin &lt;lgl&gt;,
+## #   name &lt;chr&gt;, company &lt;chr&gt;, blog &lt;chr&gt;, location &lt;chr&gt;, email &lt;chr&gt;,
+## #   public_repos &lt;int&gt;, public_gists &lt;int&gt;, followers &lt;int&gt;, following &lt;int&gt;,
+## #   created_at &lt;chr&gt;, updated_at &lt;chr&gt;, bio &lt;chr&gt;, hireable &lt;lgl&gt;
 ```
 
 ---
@@ -952,10 +906,11 @@ users %&gt;%
 
 ```r
 users %&gt;%
-  hoist(user, 
-        followers = "followers", 
-        login = "login", 
-        url = "html_url"
+  hoist(
+    .col = user,
+    followers = "followers",
+    login = "login",
+    url = "html_url"
   )
 ```
 
@@ -999,7 +954,7 @@ users %&gt;%
 
 ```r
 repos &lt;- repos %&gt;%
-  unnest_longer(repo)
+  unnest_longer(col = repo)
 repos
 ```
 
@@ -1027,11 +982,12 @@ repos
 
 ```r
 repos %&gt;%
-  hoist(repo, 
-        login = c("owner", "login"), 
-        name = "name",
-        homepage = "homepage",
-        watchers = "watchers_count"
+  hoist(
+    .col = repo,
+    login = c("owner", "login"),
+    name = "name",
+    homepage = "homepage",
+    watchers = "watchers_count"
   )
 ```
 
@@ -1039,73 +995,153 @@ repos %&gt;%
 ## # A tibble: 176 x 5
 ##    login       name        homepage watchers repo             
 ##    &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;int&gt; &lt;list&gt;           
-##  1 gaborcsardi after       &lt;NA&gt;            5 &lt;named list [65]&gt;
-##  2 gaborcsardi argufy      &lt;NA&gt;           19 &lt;named list [65]&gt;
-##  3 gaborcsardi ask         &lt;NA&gt;            5 &lt;named list [65]&gt;
-##  4 gaborcsardi baseimports &lt;NA&gt;            0 &lt;named list [65]&gt;
-##  5 gaborcsardi citest      &lt;NA&gt;            0 &lt;named list [65]&gt;
+##  1 gaborcsardi after        &lt;NA&gt;           5 &lt;named list [65]&gt;
+##  2 gaborcsardi argufy       &lt;NA&gt;          19 &lt;named list [65]&gt;
+##  3 gaborcsardi ask          &lt;NA&gt;           5 &lt;named list [65]&gt;
+##  4 gaborcsardi baseimports  &lt;NA&gt;           0 &lt;named list [65]&gt;
+##  5 gaborcsardi citest       &lt;NA&gt;           0 &lt;named list [65]&gt;
 ##  6 gaborcsardi clisymbols  ""             18 &lt;named list [65]&gt;
-##  7 gaborcsardi cmaker      &lt;NA&gt;            0 &lt;named list [65]&gt;
-##  8 gaborcsardi cmark       &lt;NA&gt;            0 &lt;named list [65]&gt;
-##  9 gaborcsardi conditions  &lt;NA&gt;            0 &lt;named list [65]&gt;
-## 10 gaborcsardi crayon      &lt;NA&gt;           52 &lt;named list [65]&gt;
+##  7 gaborcsardi cmaker       &lt;NA&gt;           0 &lt;named list [65]&gt;
+##  8 gaborcsardi cmark        &lt;NA&gt;           0 &lt;named list [65]&gt;
+##  9 gaborcsardi conditions   &lt;NA&gt;           0 &lt;named list [65]&gt;
+## 10 gaborcsardi crayon       &lt;NA&gt;          52 &lt;named list [65]&gt;
 ## # … with 166 more rows
 ```
 
 ---
 
-# `unnest_auto()`
 
+
+count: false
+ 
+
+.left-panel-gh-repos-auto-auto[
 
 ```r
-tibble(repo = gh_repos) %&gt;% 
-  unnest_auto(repo) %&gt;% 
-  unnest_auto(repo)
+*tibble(repo = gh_repos)
 ```
+]
+ 
+.right-panel-gh-repos-auto-auto[
 
 ```
-## Using `unnest_longer(repo)`; no element has names
+## # A tibble: 6 x 1
+##   repo       
+##   &lt;list&gt;     
+## 1 &lt;list [30]&gt;
+## 2 &lt;list [30]&gt;
+## 3 &lt;list [30]&gt;
+## 4 &lt;list [26]&gt;
+## 5 &lt;list [30]&gt;
+## 6 &lt;list [30]&gt;
 ```
+]
+
+---
+count: false
+ 
+
+.left-panel-gh-repos-auto-auto[
+
+```r
+tibble(repo = gh_repos) %&gt;%  
+* unnest_auto(col = repo)
+```
+]
+ 
+.right-panel-gh-repos-auto-auto[
 
 ```
-## Using `unnest_wider(repo)`; elements have 68 names in common
+## # A tibble: 176 x 1
+##    repo             
+##    &lt;list&gt;           
+##  1 &lt;named list [68]&gt;
+##  2 &lt;named list [68]&gt;
+##  3 &lt;named list [68]&gt;
+##  4 &lt;named list [68]&gt;
+##  5 &lt;named list [68]&gt;
+##  6 &lt;named list [68]&gt;
+##  7 &lt;named list [68]&gt;
+##  8 &lt;named list [68]&gt;
+##  9 &lt;named list [68]&gt;
+## 10 &lt;named list [68]&gt;
+## # … with 166 more rows
 ```
+]
+
+---
+count: false
+ 
+
+.left-panel-gh-repos-auto-auto[
+
+```r
+tibble(repo = gh_repos) %&gt;%  
+  unnest_auto(col = repo) %&gt;%  
+* unnest_auto(col = repo)
+```
+]
+ 
+.right-panel-gh-repos-auto-auto[
 
 ```
 ## # A tibble: 176 x 67
-##        id name  full_name owner private html_url description fork  url  
-##     &lt;int&gt; &lt;chr&gt; &lt;chr&gt;     &lt;lis&gt; &lt;lgl&gt;   &lt;chr&gt;    &lt;chr&gt;       &lt;lgl&gt; &lt;chr&gt;
-##  1 6.12e7 after gaborcsa… &lt;nam… FALSE   https:/… Run Code i… FALSE http…
-##  2 4.05e7 argu… gaborcsa… &lt;nam… FALSE   https:/… Declarativ… FALSE http…
-##  3 3.64e7 ask   gaborcsa… &lt;nam… FALSE   https:/… Friendly C… FALSE http…
-##  4 3.49e7 base… gaborcsa… &lt;nam… FALSE   https:/… Do we get … FALSE http…
-##  5 6.16e7 cite… gaborcsa… &lt;nam… FALSE   https:/… Test R pac… TRUE  http…
-##  6 3.39e7 clis… gaborcsa… &lt;nam… FALSE   https:/… Unicode sy… FALSE http…
-##  7 3.72e7 cmak… gaborcsa… &lt;nam… FALSE   https:/… port of cm… TRUE  http…
-##  8 6.80e7 cmark gaborcsa… &lt;nam… FALSE   https:/… CommonMark… TRUE  http…
-##  9 6.32e7 cond… gaborcsa… &lt;nam… FALSE   https:/… &lt;NA&gt;        TRUE  http…
-## 10 2.43e7 cray… gaborcsa… &lt;nam… FALSE   https:/… R package … FALSE http…
-## # … with 166 more rows, and 58 more variables: forks_url &lt;chr&gt;,
-## #   keys_url &lt;chr&gt;, collaborators_url &lt;chr&gt;, teams_url &lt;chr&gt;,
-## #   hooks_url &lt;chr&gt;, issue_events_url &lt;chr&gt;, events_url &lt;chr&gt;,
-## #   assignees_url &lt;chr&gt;, branches_url &lt;chr&gt;, tags_url &lt;chr&gt;,
-## #   blobs_url &lt;chr&gt;, git_tags_url &lt;chr&gt;, git_refs_url &lt;chr&gt;,
-## #   trees_url &lt;chr&gt;, statuses_url &lt;chr&gt;, languages_url &lt;chr&gt;,
-## #   stargazers_url &lt;chr&gt;, contributors_url &lt;chr&gt;, subscribers_url &lt;chr&gt;,
-## #   subscription_url &lt;chr&gt;, commits_url &lt;chr&gt;, git_commits_url &lt;chr&gt;,
-## #   comments_url &lt;chr&gt;, issue_comment_url &lt;chr&gt;, contents_url &lt;chr&gt;,
-## #   compare_url &lt;chr&gt;, merges_url &lt;chr&gt;, archive_url &lt;chr&gt;,
+##         id name   full_name  owner private html_url  description   fork  url    
+##      &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;lis&gt; &lt;lgl&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;lgl&gt; &lt;chr&gt;  
+##  1  6.12e7 after  gaborcsar… &lt;nam… FALSE   https://… Run Code in … FALSE https:…
+##  2  4.05e7 argufy gaborcsar… &lt;nam… FALSE   https://… Declarative … FALSE https:…
+##  3  3.64e7 ask    gaborcsar… &lt;nam… FALSE   https://… Friendly CLI… FALSE https:…
+##  4  3.49e7 basei… gaborcsar… &lt;nam… FALSE   https://… Do we get wa… FALSE https:…
+##  5  6.16e7 citest gaborcsar… &lt;nam… FALSE   https://… Test R packa… TRUE  https:…
+##  6  3.39e7 clisy… gaborcsar… &lt;nam… FALSE   https://… Unicode symb… FALSE https:…
+##  7  3.72e7 cmaker gaborcsar… &lt;nam… FALSE   https://… port of cmak… TRUE  https:…
+##  8  6.80e7 cmark  gaborcsar… &lt;nam… FALSE   https://… CommonMark p… TRUE  https:…
+##  9  6.32e7 condi… gaborcsar… &lt;nam… FALSE   https://… &lt;NA&gt;          TRUE  https:…
+## 10  2.43e7 crayon gaborcsar… &lt;nam… FALSE   https://… R package fo… FALSE https:…
+## # … with 166 more rows, and 58 more variables: forks_url &lt;chr&gt;, keys_url &lt;chr&gt;,
+## #   collaborators_url &lt;chr&gt;, teams_url &lt;chr&gt;, hooks_url &lt;chr&gt;,
+## #   issue_events_url &lt;chr&gt;, events_url &lt;chr&gt;, assignees_url &lt;chr&gt;,
+## #   branches_url &lt;chr&gt;, tags_url &lt;chr&gt;, blobs_url &lt;chr&gt;, git_tags_url &lt;chr&gt;,
+## #   git_refs_url &lt;chr&gt;, trees_url &lt;chr&gt;, statuses_url &lt;chr&gt;,
+## #   languages_url &lt;chr&gt;, stargazers_url &lt;chr&gt;, contributors_url &lt;chr&gt;,
+## #   subscribers_url &lt;chr&gt;, subscription_url &lt;chr&gt;, commits_url &lt;chr&gt;,
+## #   git_commits_url &lt;chr&gt;, comments_url &lt;chr&gt;, issue_comment_url &lt;chr&gt;,
+## #   contents_url &lt;chr&gt;, compare_url &lt;chr&gt;, merges_url &lt;chr&gt;, archive_url &lt;chr&gt;,
 ## #   downloads_url &lt;chr&gt;, issues_url &lt;chr&gt;, pulls_url &lt;chr&gt;,
 ## #   milestones_url &lt;chr&gt;, notifications_url &lt;chr&gt;, labels_url &lt;chr&gt;,
 ## #   releases_url &lt;chr&gt;, deployments_url &lt;chr&gt;, created_at &lt;chr&gt;,
 ## #   updated_at &lt;chr&gt;, pushed_at &lt;chr&gt;, git_url &lt;chr&gt;, ssh_url &lt;chr&gt;,
 ## #   clone_url &lt;chr&gt;, svn_url &lt;chr&gt;, size &lt;int&gt;, stargazers_count &lt;int&gt;,
 ## #   watchers_count &lt;int&gt;, language &lt;chr&gt;, has_issues &lt;lgl&gt;,
-## #   has_downloads &lt;lgl&gt;, has_wiki &lt;lgl&gt;, has_pages &lt;lgl&gt;,
-## #   forks_count &lt;int&gt;, open_issues_count &lt;int&gt;, forks &lt;int&gt;,
-## #   open_issues &lt;int&gt;, watchers &lt;int&gt;, default_branch &lt;chr&gt;,
-## #   homepage &lt;chr&gt;
+## #   has_downloads &lt;lgl&gt;, has_wiki &lt;lgl&gt;, has_pages &lt;lgl&gt;, forks_count &lt;int&gt;,
+## #   open_issues_count &lt;int&gt;, forks &lt;int&gt;, open_issues &lt;int&gt;, watchers &lt;int&gt;,
+## #   default_branch &lt;chr&gt;, homepage &lt;chr&gt;
 ```
+]
+
+&lt;style&gt;
+.left-panel-gh-repos-auto-auto {
+  color: #777;
+  width: 38.6138613861386%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-gh-repos-auto-auto {
+  width: 59.4059405940594%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-gh-repos-auto-auto {
+  width: 0%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 
@@ -1141,24 +1177,24 @@ chars
 
 ```r
 chars2 &lt;- chars %&gt;%
-  unnest_wider(char)
+  unnest_wider(col = char)
 chars2
 ```
 
 ```
 ## # A tibble: 30 x 18
-##    url      id name  gender culture born  died  alive titles aliases father
-##    &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt; &lt;list&gt; &lt;list&gt;  &lt;chr&gt; 
-##  1 http…  1022 Theo… Male   Ironbo… In 2… ""    TRUE  &lt;chr … &lt;chr [… ""    
-##  2 http…  1052 Tyri… Male   ""      In 2… ""    TRUE  &lt;chr … &lt;chr [… ""    
-##  3 http…  1074 Vict… Male   Ironbo… In 2… ""    TRUE  &lt;chr … &lt;chr [… ""    
-##  4 http…  1109 Will  Male   ""      ""    In 2… FALSE &lt;chr … &lt;chr [… ""    
-##  5 http…  1166 Areo… Male   Norvos… In 2… ""    TRUE  &lt;chr … &lt;chr [… ""    
-##  6 http…  1267 Chett Male   ""      At H… In 2… FALSE &lt;chr … &lt;chr [… ""    
-##  7 http…  1295 Cres… Male   ""      In 2… In 2… FALSE &lt;chr … &lt;chr [… ""    
-##  8 http…   130 Aria… Female Dornish In 2… ""    TRUE  &lt;chr … &lt;chr [… ""    
-##  9 http…  1303 Daen… Female Valyri… In 2… ""    TRUE  &lt;chr … &lt;chr [… ""    
-## 10 http…  1319 Davo… Male   Wester… In 2… ""    TRUE  &lt;chr … &lt;chr [… ""    
+##    url        id name   gender culture born   died   alive titles aliases father
+##    &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;lgl&gt; &lt;list&gt; &lt;list&gt;  &lt;chr&gt; 
+##  1 https:…  1022 Theon… Male   "Ironb… "In 2… ""     TRUE  &lt;chr … &lt;chr [… ""    
+##  2 https:…  1052 Tyrio… Male   ""      "In 2… ""     TRUE  &lt;chr … &lt;chr [… ""    
+##  3 https:…  1074 Victa… Male   "Ironb… "In 2… ""     TRUE  &lt;chr … &lt;chr [… ""    
+##  4 https:…  1109 Will   Male   ""      ""     "In 2… FALSE &lt;chr … &lt;chr [… ""    
+##  5 https:…  1166 Areo … Male   "Norvo… "In 2… ""     TRUE  &lt;chr … &lt;chr [… ""    
+##  6 https:…  1267 Chett  Male   ""      "At H… "In 2… FALSE &lt;chr … &lt;chr [… ""    
+##  7 https:…  1295 Cress… Male   ""      "In 2… "In 2… FALSE &lt;chr … &lt;chr [… ""    
+##  8 https:…   130 Arian… Female "Dorni… "In 2… ""     TRUE  &lt;chr … &lt;chr [… ""    
+##  9 https:…  1303 Daene… Female "Valyr… "In 2… ""     TRUE  &lt;chr … &lt;chr [… ""    
+## 10 https:…  1319 Davos… Male   "Weste… "In 2… ""     TRUE  &lt;chr … &lt;chr [… ""    
 ## # … with 20 more rows, and 7 more variables: mother &lt;chr&gt;, spouse &lt;chr&gt;,
 ## #   allegiances &lt;list&gt;, books &lt;list&gt;, povBooks &lt;list&gt;, tvSeries &lt;list&gt;,
 ## #   playedBy &lt;list&gt;
@@ -1171,7 +1207,7 @@ chars2
 
 ```r
 chars2 %&gt;%
-  select_if(is.list)
+  select(where(is.list))
 ```
 
 ```
@@ -1181,10 +1217,10 @@ chars2 %&gt;%
 ##  1 &lt;chr [3]&gt; &lt;chr [4]&gt;  &lt;chr [1]&gt;   &lt;chr [3]&gt; &lt;chr [2]&gt; &lt;chr [6]&gt; &lt;chr [1]&gt;
 ##  2 &lt;chr [2]&gt; &lt;chr [11]&gt; &lt;chr [1]&gt;   &lt;chr [2]&gt; &lt;chr [4]&gt; &lt;chr [6]&gt; &lt;chr [1]&gt;
 ##  3 &lt;chr [2]&gt; &lt;chr [1]&gt;  &lt;chr [1]&gt;   &lt;chr [3]&gt; &lt;chr [2]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
-##  4 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;???&gt;       &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
+##  4 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;NULL&gt;      &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
 ##  5 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;chr [1]&gt;   &lt;chr [3]&gt; &lt;chr [2]&gt; &lt;chr [2]&gt; &lt;chr [1]&gt;
-##  6 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;???&gt;       &lt;chr [2]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
-##  7 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;???&gt;       &lt;chr [2]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
+##  6 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;NULL&gt;      &lt;chr [2]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
+##  7 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;NULL&gt;      &lt;chr [2]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
 ##  8 &lt;chr [1]&gt; &lt;chr [1]&gt;  &lt;chr [1]&gt;   &lt;chr [4]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt; &lt;chr [1]&gt;
 ##  9 &lt;chr [5]&gt; &lt;chr [11]&gt; &lt;chr [1]&gt;   &lt;chr [1]&gt; &lt;chr [4]&gt; &lt;chr [6]&gt; &lt;chr [1]&gt;
 ## 10 &lt;chr [4]&gt; &lt;chr [5]&gt;  &lt;chr [2]&gt;   &lt;chr [1]&gt; &lt;chr [3]&gt; &lt;chr [5]&gt; &lt;chr [1]&gt;
@@ -1203,15 +1239,107 @@ chars2 %&gt;%
 
 ---
 
+class: inverse, center, middle
+
 # Every appearance per book/season
 
+---
+
+
+
+count: false
+ 
+
+.left-panel-got-appearances-auto[
 
 ```r
-chars2 %&gt;% 
-  select(name, books, tvSeries) %&gt;% 
-  pivot_longer(c(books, tvSeries), names_to = "media", values_to = "value") %&gt;% 
-  unnest_longer(value)
+*select(
+* .data = chars2,
+* name, books, tvSeries
+*) 
 ```
+]
+ 
+.right-panel-got-appearances-auto[
+
+```
+## # A tibble: 30 x 3
+##    name               books     tvSeries 
+##    &lt;chr&gt;              &lt;list&gt;    &lt;list&gt;   
+##  1 Theon Greyjoy      &lt;chr [3]&gt; &lt;chr [6]&gt;
+##  2 Tyrion Lannister   &lt;chr [2]&gt; &lt;chr [6]&gt;
+##  3 Victarion Greyjoy  &lt;chr [3]&gt; &lt;chr [1]&gt;
+##  4 Will               &lt;chr [1]&gt; &lt;chr [1]&gt;
+##  5 Areo Hotah         &lt;chr [3]&gt; &lt;chr [2]&gt;
+##  6 Chett              &lt;chr [2]&gt; &lt;chr [1]&gt;
+##  7 Cressen            &lt;chr [2]&gt; &lt;chr [1]&gt;
+##  8 Arianne Martell    &lt;chr [4]&gt; &lt;chr [1]&gt;
+##  9 Daenerys Targaryen &lt;chr [1]&gt; &lt;chr [6]&gt;
+## 10 Davos Seaworth     &lt;chr [1]&gt; &lt;chr [5]&gt;
+## # … with 20 more rows
+```
+]
+
+---
+count: false
+ 
+
+.left-panel-got-appearances-auto[
+
+```r
+select(  
+  .data = chars2,  
+  name, books, tvSeries  
+) %&gt;%  
+* pivot_longer(
+*   cols = c(books, tvSeries),
+*   names_to = "media",
+*   values_to = "value"
+* )
+```
+]
+ 
+.right-panel-got-appearances-auto[
+
+```
+## # A tibble: 60 x 3
+##    name              media    value    
+##    &lt;chr&gt;             &lt;chr&gt;    &lt;list&gt;   
+##  1 Theon Greyjoy     books    &lt;chr [3]&gt;
+##  2 Theon Greyjoy     tvSeries &lt;chr [6]&gt;
+##  3 Tyrion Lannister  books    &lt;chr [2]&gt;
+##  4 Tyrion Lannister  tvSeries &lt;chr [6]&gt;
+##  5 Victarion Greyjoy books    &lt;chr [3]&gt;
+##  6 Victarion Greyjoy tvSeries &lt;chr [1]&gt;
+##  7 Will              books    &lt;chr [1]&gt;
+##  8 Will              tvSeries &lt;chr [1]&gt;
+##  9 Areo Hotah        books    &lt;chr [3]&gt;
+## 10 Areo Hotah        tvSeries &lt;chr [2]&gt;
+## # … with 50 more rows
+```
+]
+
+---
+count: false
+ 
+
+.left-panel-got-appearances-auto[
+
+```r
+select(  
+  .data = chars2,  
+  name, books, tvSeries  
+) %&gt;%  
+  pivot_longer(  
+    cols = c(books, tvSeries),  
+    names_to = "media",  
+    values_to = "value"  
+  ) %&gt;%  
+* unnest_longer(col = value)
+```
+]
+ 
+.right-panel-got-appearances-auto[
 
 ```
 ## # A tibble: 180 x 3
@@ -1229,40 +1357,141 @@ chars2 %&gt;%
 ## 10 Tyrion Lannister books    A Feast for Crows
 ## # … with 170 more rows
 ```
+]
+
+&lt;style&gt;
+.left-panel-got-appearances-auto {
+  color: #777;
+  width: 38.6138613861386%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-got-appearances-auto {
+  width: 59.4059405940594%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-got-appearances-auto {
+  width: 0%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 
-# Match title to name
+class: inverse, center, middle
 
+# Match character's title to their name
+
+---
+
+
+
+count: false
+ 
+
+.left-panel-got-title-name-auto[
 
 ```r
-chars2 %&gt;% 
-  select(name, title = titles) %&gt;% 
-  unnest_longer(title)
+*select(
+* .data = chars2,
+* name,
+* title = titles
+*) 
 ```
+]
+ 
+.right-panel-got-title-name-auto[
+
+```
+## # A tibble: 30 x 2
+##    name               title    
+##    &lt;chr&gt;              &lt;list&gt;   
+##  1 Theon Greyjoy      &lt;chr [3]&gt;
+##  2 Tyrion Lannister   &lt;chr [2]&gt;
+##  3 Victarion Greyjoy  &lt;chr [2]&gt;
+##  4 Will               &lt;chr [1]&gt;
+##  5 Areo Hotah         &lt;chr [1]&gt;
+##  6 Chett              &lt;chr [1]&gt;
+##  7 Cressen            &lt;chr [1]&gt;
+##  8 Arianne Martell    &lt;chr [1]&gt;
+##  9 Daenerys Targaryen &lt;chr [5]&gt;
+## 10 Davos Seaworth     &lt;chr [4]&gt;
+## # … with 20 more rows
+```
+]
+
+---
+count: false
+ 
+
+.left-panel-got-title-name-auto[
+
+```r
+select(  
+  .data = chars2,  
+  name,  
+  title = titles  
+) %&gt;%  
+* unnest_longer(col = title)
+```
+]
+ 
+.right-panel-got-title-name-auto[
 
 ```
 ## # A tibble: 60 x 2
-##    name              title                                               
-##    &lt;chr&gt;             &lt;chr&gt;                                               
-##  1 Theon Greyjoy     Prince of Winterfell                                
-##  2 Theon Greyjoy     Captain of Sea Bitch                                
-##  3 Theon Greyjoy     Lord of the Iron Islands (by law of the green lands)
-##  4 Tyrion Lannister  Acting Hand of the King (former)                    
-##  5 Tyrion Lannister  Master of Coin (former)                             
-##  6 Victarion Greyjoy Lord Captain of the Iron Fleet                      
-##  7 Victarion Greyjoy Master of the Iron Victory                          
-##  8 Will              ""                                                  
-##  9 Areo Hotah        Captain of the Guard at Sunspear                    
-## 10 Chett             ""                                                  
+##    name              title                                                 
+##    &lt;chr&gt;             &lt;chr&gt;                                                 
+##  1 Theon Greyjoy     "Prince of Winterfell"                                
+##  2 Theon Greyjoy     "Captain of Sea Bitch"                                
+##  3 Theon Greyjoy     "Lord of the Iron Islands (by law of the green lands)"
+##  4 Tyrion Lannister  "Acting Hand of the King (former)"                    
+##  5 Tyrion Lannister  "Master of Coin (former)"                             
+##  6 Victarion Greyjoy "Lord Captain of the Iron Fleet"                      
+##  7 Victarion Greyjoy "Master of the Iron Victory"                          
+##  8 Will              ""                                                    
+##  9 Areo Hotah        "Captain of the Guard at Sunspear"                    
+## 10 Chett             ""                                                    
 ## # … with 50 more rows
 ```
+]
+
+&lt;style&gt;
+.left-panel-got-title-name-auto {
+  color: #777;
+  width: 38.6138613861386%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-got-title-name-auto {
+  width: 59.4059405940594%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-got-title-name-auto {
+  width: 0%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 
-# Practice rectangling
+# May the force be with you
 
-&lt;div style="width:100%;height:0;padding-bottom:49%;position:relative;"&gt;&lt;iframe src="https://giphy.com/embed/1l522MnWgimYM" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;/div&gt;
+&lt;div style="width:100%;height:0;padding-bottom:50%;position:relative;"&gt;&lt;iframe src="https://giphy.com/embed/C0ZArORmrDQCRTIFnQ" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -1313,6 +1542,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1330,17 +1585,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

@@ -20,25 +20,17 @@ class: center, middle, inverse, title-slide
 
 
 
-&lt;div style="width:100%;height:0;padding-bottom:50%;position:relative;"&gt;&lt;iframe src="https://giphy.com/embed/8j2wrmWdc0Kf6" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;/div&gt;
-
----
-
 # Me
 
-.center[
-
-![:scale 50%](/img/ben-soltoff.jpg)
-
-]
+&lt;img src="/img/ben-soltoff.jpg" width="50%" height="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # TAs
 
-* Deblina (Deb) Mukherjee
-* Dominique Janvier
-* Neeraj Sharma
+- Francesca Di Cera
+- Deblina Mukherjee
+- Neeraj Sharma
 
 ---
 
@@ -48,9 +40,7 @@ class: center, middle, inverse, title-slide
 
 ---
 
-class: center
-
-![](/img/bruce_computer.gif)
+&lt;img src="/img/bruce_computer.gif" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -133,7 +123,7 @@ ggplot(data = mpg, mapping = aes(displ, hwy)) +
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;img src="index_files/figure-html/auto-example-1.png" width="864" /&gt;
+&lt;img src="index_files/figure-html/auto-example-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -278,13 +268,6 @@ class: center
 * Weekly programming assignments
 * Peer review
 
---
-
-## Special concerns for spring 2020
-
-* Grading standards
-* Pass/fail option
-
 ---
 
 class: center
@@ -345,7 +328,7 @@ class: center
 
 ### Jane: a GUI workflow
 
-1. Search for data files online
+1. Searches for data files online
 1. Cleans the files in Excel
 1. Analyzes the data in Stata
 1. Writes her report in Google Docs
@@ -362,7 +345,7 @@ class: center
     * `data`
     * `graphics`
     * `output`
-1. Search for data files online
+1. Searches for data files online
 1. Cleans the files in R
 1. Analyzes the files in R
 1. Writes her report in R Markdown
@@ -373,7 +356,7 @@ class: center
 
 # The results
 
-![Gandalf meme](https://www.barrioblues.com/uploads/1/4/6/1/1461397/gandalf-meme_orig.png)
+&lt;img src="https://i.imgflip.com/1szkun.jpg" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -470,7 +453,7 @@ tmls %&gt;%
 
 # Good code
 
-&lt;img src="index_files/figure-html/sesame-good-1.png" width="864" /&gt;
+&lt;img src="index_files/figure-html/sesame-good-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -531,30 +514,20 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 })();
 (function() {
   "use strict"
-  /* Replace <script> tags in slides area to make them executable
-   *
-   * Runs after post-processing of markdown source into slides and replaces only
-   * <script>s on the last slide of continued slides using the .has-continuation
-   * class added by xaringan. Finally, any <script>s in the slides area that
-   * aren't executed are commented out.
-   */
+  // Replace <script> tags in slides area to make them executable
   var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+    '.remark-slides-area .remark-slide-container script'
   );
   if (!scripts.length) return;
   for (var i = 0; i < scripts.length; i++) {
     var s = document.createElement('script');
     var code = document.createTextNode(scripts[i].textContent);
     s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
     scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-  var scriptsNotExecuted = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container.has-continuation script'
-  );
-  if (!scriptsNotExecuted.length) return;
-  for (var i = 0; i < scriptsNotExecuted.length; i++) {
-    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
-    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
   }
 })();
 (function() {
